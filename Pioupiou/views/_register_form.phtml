@@ -1,11 +1,12 @@
 <h3>Créer un compte</h3>
 
-<form action"index.php" method="post">
-    <input type="text" name="register-username" placeholder="Pseudo"/>
-    <input type="text" name="register-email" placeholder="E-mail"/>
-    <input type="password" name="register-password" placeholder="Mot de passe"/>
-    <input type="password" name="register-password-check" placeholder="Comfimez le mot de passe"/>
-    <input type="submit" name="Se connecter"/>
+<form action="index.php?route=welcome&action=register-submit" method="post">
+    <?php include_once '__errors.phtml'; ?>
+    <input type="text" name="register-username" placeholder="Pseudo" value="<?= isset($addUser['register-username']) ? $addUser['register-username'] : ''; ?>"/>
+    <input type="text" name="register-email" placeholder="E-mail" value="<?= isset($addUser['register-email']) ? $addUser['register-email'] : ''; ?>"/>
+    <input type="password" name="register-password" placeholder="Mot de passe" value="<?= isset($addUser['register-password']) ? $addUser['register-password'] : ''; ?>"/>
+    <input type="password" name="register-password-check" placeholder="Comfimez le mot de passe" value="<?= isset($addUser['register-password-check']) ? $addUser['register-password-check'] : ''; ?>"/>
+    <input type="submit" value="Se connecter" />
 </form>
 
 <p>ou</p>
