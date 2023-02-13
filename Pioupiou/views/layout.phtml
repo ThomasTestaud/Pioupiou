@@ -2,17 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pioupiou 2.0</title>
+    <link rel="stylesheet" href="style.css"></link>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="assests/css/style.css">
+    <title>Pioupiou</title>
 </head>
-    <body>
-        <header>
-            <h1>Pioupiou.header</h1>
-        </header>
-        <main>
-            <?php include $template ?>
-        </main>
-        <footer>
-        </footer>
-    </body>
+<body>
+    <?php require 'views/components/header.phtml'; ?>
+    <main>
+        <?php require $controller; ?>
+    </main>
+</body>
 </html>

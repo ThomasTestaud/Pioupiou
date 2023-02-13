@@ -1,17 +1,27 @@
 <?php
 
-namespace Controllers;
-
-
-class UserController {
+class User {
     
-    public function isConnected(): bool 
+    private $username;
+    private $password;
+    private $email;
+    private $validate;
+    
+    public function connection(): void
     {
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] === true){
-            return true;
-        } else {
-            return false;
+        //controller du formulaire de connexion
+        if(isset($_POST['login-username']) && isset($_POST['login-password'])){
+            $connect->login();
         }
     }
-
+    
+    public function register(): void
+    {
+        //controller du formulaire de création de compte
+        if(isset($_POST['register-username']) && isset($_POST['register-password']) && isset($_POST['register-email'])){
+            $connect->register();
+        }
+    }
+    
 }
+
