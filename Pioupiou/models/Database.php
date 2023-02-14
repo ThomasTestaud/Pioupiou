@@ -33,5 +33,7 @@ class Database {
     protected function createNew($req, $params =[]){
         $query = $this->bdd->prepare($req);
         $query->execute($params);
+        $newId = $this->bdd->lastInsertId();
+        return $newId;
     }
 }

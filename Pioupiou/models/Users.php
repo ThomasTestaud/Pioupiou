@@ -18,13 +18,18 @@ class Users extends Database {
     public function createAccount($data): void
     {
         $req = "INSERT INTO users (username, password, email, validate) 
-                VALUES (:user, :password, :email, '1');
-                INSERT INTO user_profile (user_id) 
-                VALUES (LAST_INSERT_ID());";
+                VALUES (:user, :password, :email, '1')";
         $params = [
             'user' => $data['register-username'],
             'password' => $data['register-password'],
             'email' => $data['register-email']
+        ];
+        $id = $this->createNew($req, $params);
+        
+        $req = "INSERT INTO user_profile (user_id) 
+                VALUES (:id)";
+        $params = [
+            'id' => $id
         ];
         $this->createNew($req, $params);
     }

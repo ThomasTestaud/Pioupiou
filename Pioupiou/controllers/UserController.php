@@ -100,8 +100,22 @@ class UserController {
                 $exist = $model->checkIfUserExist($data);
                 
                 if($exist === false) {
-                    
+                    //create account
                     $model->createAccount($data);
+                    
+                    //save user's data into session
+                    $datalog = [
+                        'login-id' => $addUser['register-username'],
+                        'login-password' => $addUser['register-password']
+                    ];
+                    $result = $model->login($datalog);
+                    $_SESSION['user_data'] = [
+                        'user_id' => $result['id'],
+                        'username' => $result['username'],
+                        'email' => $result['email'],
+                        'creation_date' => $result['creation_date'],
+                        'validate' => $result['validate']
+                    ];
                     
                     $_SESSION['connected'] = true;
                     
