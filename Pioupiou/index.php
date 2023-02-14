@@ -14,8 +14,24 @@ if(array_key_exists('route', $_GET)) {
     switch($_GET['route']) {
             
             case 'dashboard':
+                
+                if(isset($_GET['action'])){
+                    switch($_GET['action']) {
+                        case 'post':
+                            $controller = new Controllers\ArticleController();
+                            $controller->writeNewArticle();
+                        break;
+                        
+                        default:
+                            header('Location: index.php?route=dashboard');
+                            exit;
+                        break;
+                    }
+                }
+                
                 $controller = new Controllers\DashboardController();
                 $controller->displayDashboard();
+                
             break;
             
             case 'profil':
@@ -34,31 +50,31 @@ if(array_key_exists('route', $_GET)) {
                 
                 switch($_GET['action']) {
                 
-                case 'login':
-                    $controller = new Controllers\WelcomeController();
-                    $controller->displayLogin();
-                break;
-                
-                case 'login-submit':
-                    $user = new Controllers\UserController();
-                    $user->connect();
-                break;
-                
-                case 'register':
-                    $controller = new Controllers\WelcomeController();
-                    $controller->displayRegister();
-                break;
-                
-                case 'register-submit':
-                    $user = new Controllers\UserController();
-                    $user->register();
-                break;
-                
-                default:
-                    header('Location: index.php?route=welcome&action=login');
-                    exit;
-                break;
-            }
+                    case 'login':
+                        $controller = new Controllers\WelcomeController();
+                        $controller->displayLogin();
+                    break;
+                    
+                    case 'login-submit':
+                        $user = new Controllers\UserController();
+                        $user->connect();
+                    break;
+                    
+                    case 'register':
+                        $controller = new Controllers\WelcomeController();
+                        $controller->displayRegister();
+                    break;
+                    
+                    case 'register-submit':
+                        $user = new Controllers\UserController();
+                        $user->register();
+                    break;
+                    
+                    default:
+                        header('Location: index.php?route=welcome&action=login');
+                        exit;
+                    break;
+                }
             break;
             
             default:

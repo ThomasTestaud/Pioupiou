@@ -1,9 +1,9 @@
 <div class="article-form card-type-1">
     <h3>Écrivez un nouveau post</h3>
-    <form action="index.php?route=welcome&action=login-submit" method="post">
+    <form action="index.php?route=dashboard&action=post" method="post">
         <?php include_once '__errors.phtml'; ?>
         <input type="text" name="article-title" placeholder="Titre de votre post"/>
-        <textarea  name="article-content" placeholder="Contenu de votre post"></textarea>
+        <textarea type="text"  name="article-content" placeholder="Contenu de votre post"></textarea>
         <input type="submit" value="Poster"/>
     </form>
 </div>
