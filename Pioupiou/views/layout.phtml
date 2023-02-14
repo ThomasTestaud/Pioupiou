@@ -8,7 +8,17 @@
 </head>
     <body>
         <header>
-            <h1>Pioupiou.header</h1>
+            <h1>
+                <a href="index.php?route=dashboard">
+                    Pioupiou
+                </a>
+            </h1>
+            <?php if(isset($_SESSION['connected'])): ?>
+            <nav>
+                <a href="index.php?route=profil">Profil</a>
+                <a href="index.php?route=disconnect">Deco</a>
+            </nav>
+            <?php endif; ?>
         </header>
         <main>
             <?php include $template ?>

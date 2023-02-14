@@ -35,7 +35,17 @@ class UserController {
             $model = new \Models\Users();
             $result = $model->login($data);
             
+            
+            
             if(password_verify($data['login-password'], $result['password'])) {
+                
+                $_SESSION['user_data'] = [
+                    'user_id' => $result['id'],
+                    'username' => $result['username'],
+                    'email' => $result['email'],
+                    'creation_date' => $result['creation_date'],
+                    'validate' => $result['validate']
+                ];
                 
                 $_SESSION['connected'] = true;
                 header('Location: index.php?route=dashboard');
@@ -90,9 +100,11 @@ class UserController {
                 $exist = $model->checkIfUserExist($data);
                 
                 if($exist === false) {
-                    echo "création d'un nouveau compte";
+                    
                     $model->createAccount($data);
+                    
                     $_SESSION['connected'] = true;
+                    
                     header('Location: index.php?route=dashboard');
                     exit;
                 } else {
@@ -118,4 +130,10 @@ class UserController {
         $model->isNotConnected();
     }
     
+    public function disconnect()
+    {
+        session_destroy();
+        header('Location: index.php?route=welcome&action=login');
+        exit;
+    }
 }

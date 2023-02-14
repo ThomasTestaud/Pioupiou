@@ -18,6 +18,7 @@ body {
     line-height: 2em;
 }
 
+
 .flex-1 {
     margin: auto;
     text-align: center;
@@ -40,7 +41,22 @@ body {
     display: none;
 }
 
-/***************************HEADER************************/
+/**************************************************
+RE-USABLE CARDS
+*************************************************/
+
+.card-type-1 {
+    border: 1px solid grey;
+    width: 400px;
+    min-height: 200px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+/***************************************************************************************************************************************
+HEADER
+***********************************************************************************************************************************/
 
 header {
     position: sticky;
@@ -55,4 +71,28 @@ header {
     padding: 20px;
     text-align: center;
     z-index: 1;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+}
+
+
+/***************************************************************************************************************************************
+DASHBOARD
+***********************************************************************************************************************************/
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-container div {
+    margin: 10px;
+}
+
+.vertical-border {
+    height: 90vh;
+    border-left: 1px solid grey;
 }

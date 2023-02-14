@@ -18,8 +18,14 @@ if(array_key_exists('route', $_GET)) {
                 $controller->displayDashboard();
             break;
             
-            case 'profile':
-                $user->isConnected();
+            case 'profil':
+                $controller = new Controllers\ProfilController();
+                $controller->displayProfil();
+            break;
+            
+            case 'disconnect':
+                $controller = new Controllers\UserController();
+                $controller->disconnect();
             break;
             
             case 'welcome':
@@ -52,7 +58,6 @@ if(array_key_exists('route', $_GET)) {
                     header('Location: index.php?route=welcome&action=login');
                     exit;
                 break;
-                
             }
             break;
             

@@ -17,19 +17,21 @@ class Users extends Database {
     
     public function createAccount($data): void
     {
-        $req = "INSERT INTO `users`(`username`, `password`, `email`, `validate`) 
-        VALUES (:user, :password, :email, '1')";
+        $req = "INSERT INTO users (username, password, email, validate) 
+                VALUES (:user, :password, :email, '1');
+                INSERT INTO user_profile (user_id) 
+                VALUES (LAST_INSERT_ID());";
         $params = [
             'user' => $data['register-username'],
             'password' => $data['register-password'],
             'email' => $data['register-email']
         ];
-        $this->findOne($req, $params);
+        $this->createNew($req, $params);
     }
     
     public function login($data)
     {
-        $req = "SELECT `username`, `email`, `password` FROM `users` WHERE username = :id OR email = :id";
+        $req = "SELECT `id`, `username`, `email`, `password`, `creation_date`, `validate` FROM `users` WHERE username = :id OR email = :id";
         $params = [
             'id' => $data['login-id']
         ];

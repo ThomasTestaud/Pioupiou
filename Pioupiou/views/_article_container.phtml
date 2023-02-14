@@ -1,0 +1,10 @@
+<div class="article-container">
+    <?php foreach($articles as $article): ?>
+    <article class="post card-type-1">
+        <p><?= htmlspecialchars($article['username']) ?></p>
+        <h4><?= htmlspecialchars($article['title']) ?></h4>
+        <p><?= htmlspecialchars($article['content']) ?></p>
+        <p><?= htmlspecialchars($article['time_stamp']) ?></p>
+    </article>
+    <?php endforeach; ?>
+</div>
