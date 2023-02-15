@@ -6,7 +6,7 @@ class Articles extends Database {
     
     public function getAllArticles()
     {
-        $req = "SELECT articles.title, articles.content, articles.time_stamp, users.username
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, users.username
                 FROM articles
                 INNER JOIN users
                 ON articles.user_id = users.id

@@ -1,10 +1,32 @@
 <div class="article-container">
+    
     <?php foreach($articles as $article): ?>
-    <article class="post card-type-1">
-        <p><?= htmlspecialchars($article['username']) ?></p>
-        <h4><?= htmlspecialchars($article['title']) ?></h4>
-        <p><?= htmlspecialchars($article['content']) ?></p>
-        <p><?= htmlspecialchars($article['time_stamp']) ?></p>
-    </article>
+    
+        <article class="post card-type-1">
+            <p><?= htmlspecialchars($article['username']) ?></p>
+            <h4><?= htmlspecialchars($article['title']) ?></h4>
+            <p><?= htmlspecialchars($article['content']) ?></p>
+            <p><?= htmlspecialchars($article['time_stamp']) ?></p>
+            <h5>Commentaires :</h5>
+            
+            <?php foreach($comments as $comment): ?>
+            
+                <?php if($comment['article_id'] === $article['id']): ?>
+                
+                    <h6><?= htmlspecialchars($comment['username']) ?></h6>
+                    <p><?= htmlspecialchars($comment['content']) ?></p>
+                    <p><?= htmlspecialchars($comment['time_stamp']) ?></p>
+                    
+                <?php endif; ?>
+                
+            <?php endforeach; ?>
+            
+            <form method="post" action="index.php?route=dashboard&action=comment&id=<?= $article['id'] ?>">
+                <input type="text" name="comment"/>
+                <input type="submit" value="OK"/>
+            </form>
+        </article>
+        
     <?php endforeach; ?>
+    
 </div>

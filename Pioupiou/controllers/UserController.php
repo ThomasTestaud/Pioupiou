@@ -55,7 +55,8 @@ class UserController {
             }
         }
         
-        $template = "_login_form.phtml";
+        $form = "_login_form.phtml";
+        $template = "welcome.phtml";
         include_once 'views/layout.phtml';
     }
     
@@ -99,30 +100,27 @@ class UserController {
                 $model = new \Models\Users();
                 $exist = $model->checkIfUserExist($data);
                 
-                //var_dump($exist); die;
-                //var_dump($exist['username'], $exist['email'], $data['register-username'], $data['register-email']); die;
-                
                 if(empty($exist)) {
                     //create account
                     $id = $model->createAccount($data);
-                    var_dump($id);
-                    die();
+                    
                     
                     //save user's data into session
                     $datalog = [
                         'login-id' => $addUser['register-username'],
                         'login-password' => $addUser['register-password']
                     ];
-                    //$result = $model->login($datalog);
+                    
                     $_SESSION['user_data'] = [
-                        'user_id' => $result['id'],
-                        'username' => $result['username'],
-                        'email' => $result['email'],
-                        'creation_date' => $result['creation_date'],
-                        'validate' => $result['validate']
+                        'user_id' => $id,
+                        'username' => $data['register-username'],
+                        'email' => $data['register-email'],
+                        'creation_date' => date('d-m-y h:i:s'),
+                        'validate' => 1
                     ];
                     
                     $_SESSION['connected'] = true;
+                    
                     
                     header('Location: index.php?route=dashboard');
                     exit;
@@ -140,7 +138,8 @@ class UserController {
             
         }
         
-        $template = "_register_form.phtml";
+        $form = "_register_form.phtml";
+        $template = "welcome.phtml";
         include_once 'views/layout.phtml';
     }
     

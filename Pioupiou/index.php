@@ -22,6 +22,11 @@ if(array_key_exists('route', $_GET)) {
                             $controller->writeNewArticle();
                         break;
                         
+                        case 'comment':
+                            $controller = new Controllers\CommentController();
+                            $controller->writeNewComment();
+                        break;
+                        
                         default:
                             header('Location: index.php?route=dashboard');
                             exit;

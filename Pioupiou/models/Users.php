@@ -25,15 +25,6 @@ class Users extends Database {
             'email' => $data['register-email']
         ];
         return $this->createNew($req, $params);
-        
-        /*
-        $req = "INSERT INTO user_profile (user_id) 
-                VALUES (:id)";
-        $params = [
-            'id' => $id
-        ];
-        $this->createNew($req, $params);*/
-        
     }
     
     public function login($data)

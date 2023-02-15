@@ -19,7 +19,6 @@ class ArticleController {
                 'article-title' => trim($_POST['article-title']),
                 'article-content' => trim($_POST['article-content'])
             ];
-            var_dump($newArticle);
         }
             
         if(empty($newArticle['article-title'])) {
@@ -42,8 +41,10 @@ class ArticleController {
             $model->writeArticle($data);
             
         }
+        
         header('Location: index.php?route=dashboard');
         exit;
+        
     }
 
 }
