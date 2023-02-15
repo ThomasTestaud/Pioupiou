@@ -15,7 +15,7 @@ class Users extends Database {
         return $this->findOne($req, $params);
     }
     
-    public function createAccount($data): void
+    public function createAccount($data)
     {
         $req = "INSERT INTO users (username, password, email, validate) 
                 VALUES (:user, :password, :email, '1')";
@@ -24,14 +24,16 @@ class Users extends Database {
             'password' => $data['register-password'],
             'email' => $data['register-email']
         ];
-        $id = $this->createNew($req, $params);
+        return $this->createNew($req, $params);
         
+        /*
         $req = "INSERT INTO user_profile (user_id) 
                 VALUES (:id)";
         $params = [
             'id' => $id
         ];
-        $this->createNew($req, $params);
+        $this->createNew($req, $params);*/
+        
     }
     
     public function login($data)

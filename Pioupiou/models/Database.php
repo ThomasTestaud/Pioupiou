@@ -10,10 +10,16 @@ class Database {
     
     public function __construct()
     {
-        $this->bdd = new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS, [
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-            ]);
+        try {
+            $this->bdd = new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS, [
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+                ]);
+        }catch(\PDOException $e) {
+            //redirique erreur 404
+            echo 'erreur 404';
+            die();
+        }
     }
     
     protected function findAll($req, $params = [])
@@ -33,7 +39,6 @@ class Database {
     protected function createNew($req, $params =[]){
         $query = $this->bdd->prepare($req);
         $query->execute($params);
-        $newId = $this->bdd->lastInsertId();
-        return $newId;
+        return $this->bdd->lastInsertId();
     }
 }

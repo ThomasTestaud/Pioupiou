@@ -8,7 +8,7 @@ class Articles extends Database {
     {
         $req = "SELECT articles.title, articles.content, articles.time_stamp, users.username
                 FROM articles
-                JOIN users
+                INNER JOIN users
                 ON articles.user_id = users.id
                 WHERE articles.validate != 0 AND users.validate != 0 ORDER BY articles.id DESC;";
         return $this->findAll($req);
@@ -18,8 +18,7 @@ class Articles extends Database {
     {
         $req = "INSERT INTO articles (user_id, title, content) 
                 VALUES (:user, :title, :content)";
-        $params = $data;
         
-        $this->createNew($req, $params);
+        $this->createNew($req, $data);
     }
 }

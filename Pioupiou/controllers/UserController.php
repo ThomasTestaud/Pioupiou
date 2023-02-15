@@ -99,16 +99,21 @@ class UserController {
                 $model = new \Models\Users();
                 $exist = $model->checkIfUserExist($data);
                 
-                if($exist === false) {
+                //var_dump($exist); die;
+                //var_dump($exist['username'], $exist['email'], $data['register-username'], $data['register-email']); die;
+                
+                if(empty($exist)) {
                     //create account
-                    $model->createAccount($data);
+                    $id = $model->createAccount($data);
+                    var_dump($id);
+                    die();
                     
                     //save user's data into session
                     $datalog = [
                         'login-id' => $addUser['register-username'],
                         'login-password' => $addUser['register-password']
                     ];
-                    $result = $model->login($datalog);
+                    //$result = $model->login($datalog);
                     $_SESSION['user_data'] = [
                         'user_id' => $result['id'],
                         'username' => $result['username'],
@@ -122,10 +127,11 @@ class UserController {
                     header('Location: index.php?route=dashboard');
                     exit;
                 } else {
-                    if($exist['username'] === $data['register-username']){
+                     //$errors[] = "Erreur lors de la création du compte";
+                    if(strtolower($exist['username']) === strtolower($data['register-username'])){
                         $errors[] = "Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre";
                     }
-                    if($exist['email'] === $data['register-email']) {
+                    if(strtolower($exist['email']) === strtolower($data['register-email'])) {
                         $errors[] = "Vous avez déjà un compte à cette adresse mail";
                     }
                 }
