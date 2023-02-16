@@ -60,7 +60,42 @@ class ArticleController {
         
         header('Location: index.php?route=dashboard');
         exit;
+    }
+    
+    public function deleteArticle(): void
+    {
+        $errors = [];
+        $tokenSession = '0';
         
+        foreach($_SESSION['article-tokens'] as $entry) {
+            if($entry['id'] == $_POST['article-id']) {
+                $tokenSession = $entry['token'];
+                break;
+            }
+        }
+        
+        if(empty($_POST['article-id'])){
+            $errors[] = "Erreur";
+        }
+        
+        if($tokenSession !== $_POST['article-token']){
+            $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
+        }
+        
+        var_dump($_SESSION['article-tokens']);
+        var_dump($tokenSession);
+        var_dump($_POST['article-token']);
+        var_dump($errors);
+        
+        if(count($errors) === 0) {
+            $model = new \Models\Articles();
+            $model->deleteArticle($_POST['article-id']);
+        }
+        
+        
+        
+        header('Location: index.php?route=dashboard');
+        exit;
     }
 
 }

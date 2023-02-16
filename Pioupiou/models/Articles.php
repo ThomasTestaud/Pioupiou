@@ -18,14 +18,6 @@ class Articles extends Database {
         return $this->findAll($req);
     }
     
-    public function writeArticle($data)
-    {
-        $req = "INSERT INTO articles (user_id, title, content) 
-                VALUES (:user, :title, :content)";
-        
-        $this->createNew($req, $data);
-    }
-    
     public function getAllArticlesFromUser($user)
     {
         $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, users.username
@@ -39,5 +31,24 @@ class Articles extends Database {
         ];
         
         return $this->findAll($req, $params);
+    }
+    
+    public function writeArticle($data)
+    {
+        $req = "INSERT INTO articles (user_id, title, content) 
+                VALUES (:user, :title, :content)";
+        
+        $this->createNew($req, $data);
+    }
+        
+    public function deleteArticle($articleId)
+    {
+        $req = "UPDATE `articles` SET `validate`= 0 WHERE id = :id";
+        
+        $params = [
+            'id' => $articleId    
+        ];
+        
+        $this->createNew($req, $params);
     }
 }

@@ -22,6 +22,11 @@ if(array_key_exists('route', $_GET)) {
                             $controller->writeNewArticle();
                         break;
                         
+                        case 'delete-article':
+                            $controller = new Controllers\ArticleController();
+                            $controller->deleteArticle();
+                        break;
+                        
                         case 'comment':
                             $controller = new Controllers\CommentController();
                             $controller->writeNewComment();

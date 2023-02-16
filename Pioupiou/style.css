@@ -170,6 +170,14 @@ DASHBOARD
     display: flex;
 }
 
+.post .post-head-right form,
+.post .post-head-right button {
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: 0px;
+}
+
 .post .post-head a {
     display: flex;
     align-items: center;

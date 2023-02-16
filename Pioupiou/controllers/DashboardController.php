@@ -15,7 +15,7 @@ class DashboardController {
         
         $commentsModel = new \Models\Comments();
         $comments = $commentsModel->getAllComments();
-        
+        //var_dump($comments);die();
         
         $template = "dashboard.phtml";
         include_once 'views/layout.phtml';
