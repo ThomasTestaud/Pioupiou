@@ -155,10 +155,19 @@ DASHBOARD
 
 .post .post-head {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid var(--main-background);
     line-height: 1.5em;
     padding: 0.7em;
+}
+
+.post .post-head-left {
+    display: flex;
+    align-items: center;
+}
+
+.post .post-head-right {
+    display: flex;
 }
 
 .post .post-head a {
@@ -172,12 +181,31 @@ DASHBOARD
     margin-right: 0.7em;
 }
 
+.post svg {
+    color: black;
+    height: 1rem;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.post svg:hover {
+    color: red;
+    height: 1.2rem;
+}
+
 .post .post-content {
     margin: 0.7em;
 }
 
 .post .post-comments {
     border-top: 1px solid var(--main-background);
+    max-height: 25rem;
+    overflow: scroll;
+
+}
+
+.post .post-comments::-webkit-scrollbar {
+    display: none;
 }
 
 .post .comment-container {
@@ -212,6 +240,18 @@ DASHBOARD
 .post .post-comments .comment .comment-head {
     display: flex;
     font-size: 0.8em;
+}
+
+.post .comment-container svg {
+    color: black;
+    height: 0.8rem;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.post .comment-container svg:hover {
+    color: red;
+    height: 1rem;
 }
 
 
