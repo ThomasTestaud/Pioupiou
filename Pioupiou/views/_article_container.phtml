@@ -5,7 +5,10 @@
         <article class="post">
             
             <div class="post-head">
-                <img src="public/uploads/profile_img/<?= $article['image_path'] = $article['image_path'] ?? 'default_profile.png'; ?>" alt="Photo de <?= htmlspecialchars($article['username']) ?>"></img>
+                <a href="index.php?route=profile&user=<?= htmlspecialchars($article['username']) ?>">
+                    <img src="public/uploads/profile_img/<?= $article['image_path'] = $article['image_path'] ?? 'default_profile.png'; ?>" alt="Photo de <?= htmlspecialchars($article['username']) ?>"></img>
+                </a>
+                
                 <div>
                     <a href="index.php?route=profile&user=<?= htmlspecialchars($article['username']) ?>"><p><?= htmlspecialchars($article['username']) ?></p></a>
                     <p><?= htmlspecialchars($article['time_stamp']) ?></p>
@@ -22,15 +25,21 @@
                 
                     <?php if($comment['article_id'] === $article['id']): ?>
                         
-                        <div class="comment">
-                            <div class="comment-head">
-                                <p><a href="index.php?route=profile&user=<?= htmlspecialchars($comment['username']) ?>"><?= htmlspecialchars($comment['username']) ?></a></p>
-                                <p>-<?= htmlspecialchars($comment['time_stamp']) ?></p>
+                        <div class="comment-container">
+                            <a href="index.php?route=profile&user=<?= htmlspecialchars($comment['username']) ?>">
+                                <img src="public/uploads/profile_img/<?= $comment['image_path'] = $comment['image_path'] ?? 'default_profile.png'; ?>" alt="Photo de <?= htmlspecialchars($comment['username']) ?>"></img>
+                            </a>
+                            <div class="comment-sub-container">
+                                <div class="comment">
+                                    <div class="comment-head">
+                                        <p><a href="index.php?route=profile&user=<?= htmlspecialchars($comment['username']) ?>"><?= htmlspecialchars($comment['username']) ?></a></p>
+                                    </div>
+                                    
+                                    <p><?= htmlspecialchars($comment['content']) ?></p>
+                                </div>
+                                <time datetime="<?= htmlspecialchars($comment['time_stamp']) ?>"><?= htmlspecialchars($comment['time_stamp']) ?></time> 
                             </div>
-                            
-                            <p><?= htmlspecialchars($comment['content']) ?></p>
                         </div>
-                        
                     <?php endif; ?>
                     
                 <?php endforeach; ?>
