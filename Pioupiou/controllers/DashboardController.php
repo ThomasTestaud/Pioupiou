@@ -9,8 +9,10 @@ class DashboardController {
         
         $model = new \Models\Users();
         $model->isConnected();
-        $articlesModel = new \Models\Articles();
-        $articles = $articlesModel->getAllArticles();
+        
+        $articlescontroller = new ArticleController();
+        $articles = $articlescontroller->getAllArticles();
+        
         $commentsModel = new \Models\Comments();
         $comments = $commentsModel->getAllComments();
         $template = "dashboard.phtml";

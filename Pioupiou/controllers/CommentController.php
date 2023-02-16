@@ -16,11 +16,24 @@ class CommentController {
         
             $newComment = [
                 'user' => trim($_SESSION['user_data']['user_id']),
-                'article' => trim($_GET['id']),
+                'article' => trim($_POST['article-id']),
                 'content' => trim($_POST['comment'])
             ];
         }
         
+        foreach($_SESSION['article-tokens'] as $entry) {
+            if($entry['id'] == $newComment['article']) {
+                $tokenSession = $entry['token'];
+            }
+        }
+        
+        if($tokenSession !== $_POST['article-token']){
+            $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
+        }
+        
+        if($_POST['article-token'] === $_SESSION['article-tokens']) {
+            $errors[] = "Veuillez saisir un texte";
+        }
             
         if(empty($newComment['content'])) {
             $errors[] = "Veuillez saisir un texte";
@@ -31,11 +44,8 @@ class CommentController {
         }
         
         if(count($errors) == 0) {
-            
-                    
             $model = new \Models\Comments();
             $model->writeComment($newComment);
-            
         }
         
         header('Location: index.php?route=dashboard');

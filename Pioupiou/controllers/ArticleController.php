@@ -4,6 +4,25 @@ namespace Controllers;
 
 class ArticleController {
     
+    public function getAllArticles()
+    {
+        $articlesModel = new \Models\Articles();
+        $articles = $articlesModel->getAllArticles();
+        
+        $_SESSION['article-tokens'] = [];
+        
+        foreach($articles as $article) {
+            $_SESSION['article-tokens'][] = [
+                'id' => $article['id'],
+                'token' => bin2hex(random_bytes(5))
+            ];
+            //var_dump($_SESSION['article-tokens']);
+        }
+         //var_dump($_SESSION['article-tokens']);
+        //die();
+        return $articles;
+    }
+    
     public function writeNewArticle(): void
     {
         

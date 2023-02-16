@@ -39,9 +39,9 @@ if(array_key_exists('route', $_GET)) {
                 
             break;
             
-            case 'profil':
-                $controller = new Controllers\ProfilController();
-                $controller->displayProfil();
+            case 'profile':
+                $controller = new Controllers\ProfileController();
+                $controller->displayProfile();
             break;
             
             case 'disconnect':

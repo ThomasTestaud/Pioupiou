@@ -15,8 +15,9 @@
             </h1>
             <?php if(isset($_SESSION['connected'])): ?>
             <nav>
-                <a href="index.php?route=profil">Profil</a>
-                <a href="index.php?route=disconnect">Deco</a>
+                <a href="index.php?route=dashboard">Dashboard</a>
+                <a href="index.php?route=profile&user=<?= $_SESSION['user_data']['username']?>">Profil</a>
+                <a href="index.php?route=disconnect">Deconnexion</a>
             </nav>
             <?php endif; ?>
         </header>
