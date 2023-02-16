@@ -21,18 +21,17 @@ class CommentController {
             ];
         }
         
+        $tokenSession = '0';
+        
         foreach($_SESSION['article-tokens'] as $entry) {
             if($entry['id'] == $newComment['article']) {
                 $tokenSession = $entry['token'];
+                break;
             }
         }
         
         if($tokenSession !== $_POST['article-token']){
             $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
-        }
-        
-        if($_POST['article-token'] === $_SESSION['article-tokens']) {
-            $errors[] = "Veuillez saisir un texte";
         }
             
         if(empty($newComment['content'])) {

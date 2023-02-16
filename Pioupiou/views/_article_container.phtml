@@ -2,41 +2,49 @@
     
     <?php foreach($articles as $article): ?>
     
-        <article class="post card-type-1">
-            <a href="index.php?route=profile&user=<?= htmlspecialchars($article['username']) ?>"><p><?= htmlspecialchars($article['username']) ?></p></a>
-            <h4><?= htmlspecialchars($article['title']) ?></h4>
-            <p><?= htmlspecialchars($article['content']) ?></p>
-            <p><?= htmlspecialchars($article['time_stamp']) ?></p>
-            <h5>Commentaires :</h5>
+        <article class="post">
             
-            <?php foreach($comments as $comment): ?>
+            <div class="post-head">
+                <img src="public/uploads/profile_img/<?= $article['image_path'] = $article['image_path'] ?? 'default_profile.png'; ?>" alt="Photo de <?= htmlspecialchars($article['username']) ?>"></img>
+                <div>
+                    <a href="index.php?route=profile&user=<?= htmlspecialchars($article['username']) ?>"><p><?= htmlspecialchars($article['username']) ?></p></a>
+                    <p><?= htmlspecialchars($article['time_stamp']) ?></p>
+                </div>
+            </div>
             
-                <?php if($comment['article_id'] === $article['id']): ?>
+            <div class="post-content">
+                <p><?= htmlspecialchars($article['content']) ?></p>
+            </div>
+            
+            
+            <div class="post-comments">
+                <?php foreach($comments as $comment): ?>
                 
-                    <h6><a href="index.php?route=profile&user=<?= htmlspecialchars($comment['username']) ?>"><?= htmlspecialchars($comment['username']) ?></a></h6>
-                    <p><?= htmlspecialchars($comment['content']) ?></p>
-                    <p><?= htmlspecialchars($comment['time_stamp']) ?></p>
-                    
-                <?php endif; ?>
-                
-            <?php endforeach; ?>
-            
-            <form method="post" action="index.php?route=dashboard&action=comment&id=<?= $article['id'] ?>">
-                <input 
-                    type="hidden" 
-                    name="article-token" 
-                    value="
-                    <?php foreach($_SESSION['article-tokens'] as $entry):?>
-                            <?php if($entry['id'] === $article['id']): ?>
-                            <?= $entry['token'];   ?>
-                            <?php endif; ?>
-                    <?php endforeach; ?>"
+                    <?php if($comment['article_id'] === $article['id']): ?>
+                        
+                        <div class="comment">
+                            <div class="comment-head">
+                                <p><a href="index.php?route=profile&user=<?= htmlspecialchars($comment['username']) ?>"><?= htmlspecialchars($comment['username']) ?></a></p>
+                                <p>-<?= htmlspecialchars($comment['time_stamp']) ?></p>
+                            </div>
                             
-                >
-                <input type="hidden" name="article-id" value="<?= $article['id']; ?>">
-                <input type="text" name="comment"/>
-                <input type="submit" value="OK"/>
-            </form>
+                            <p><?= htmlspecialchars($comment['content']) ?></p>
+                        </div>
+                        
+                    <?php endif; ?>
+                    
+                <?php endforeach; ?>
+                
+            </div>
+                <form method="post" action="index.php?route=dashboard&action=comment&id=<?= $article['id'] ?>">
+                    <input 
+                        type="hidden" 
+                        name="article-token" 
+                        value="<?php foreach($_SESSION['article-tokens'] as $entry):?><?php if($entry['id'] === $article['id']): ?><?=$entry['token'];?><?php endif; ?><?php endforeach; ?>">
+                    <input type="hidden" name="article-id" value="<?= $article['id']; ?>">
+                    <input type="text" name="comment" placeholder="Écrivez une réponse..."/>
+                </form>
+            
         </article>
         
     <?php endforeach; ?>

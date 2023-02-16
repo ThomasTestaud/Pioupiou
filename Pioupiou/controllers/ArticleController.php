@@ -16,10 +16,7 @@ class ArticleController {
                 'id' => $article['id'],
                 'token' => bin2hex(random_bytes(5))
             ];
-            //var_dump($_SESSION['article-tokens']);
         }
-         //var_dump($_SESSION['article-tokens']);
-        //die();
         return $articles;
     }
     

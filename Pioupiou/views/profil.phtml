@@ -2,13 +2,26 @@
 <img src="public/uploads/profile_img/<?= $profileInfos['image_path'] ?>" alt="photo de <?= htmlspecialchars($profileInfos['username']) ?>">
 <h3><?= $profileInfos['username'] ?></h3>
 <a href="mailto:<?= htmlspecialchars($profileInfos['email']) ?>"><?= htmlspecialchars($profileInfos['email']) ?></a>
+
 <p>Date et heure de création du compte : <?= $profileInfos['creation_date'] ?></p>
+
 <?php if($activated === true): ?>
-<?= htmlspecialchars($profileInfos['last_login_date']) ?>
-<?= htmlspecialchars($profileInfos['description']) ?>
+
+    <?= htmlspecialchars($profileInfos['last_login_date']) ?>
+    <?= htmlspecialchars($profileInfos['description']) ?>
+
 <?php else: ?>
-<p>Ce compte n'a pas été activé par l'utilisateur</p>
-<?php if($_SESSION['user_data']['username'] === $_GET['user']): ?>
-    <a href="">Activer le compte</a>
+
+    <p>Ce compte n'a pas été activé par l'utilisateur</p>
+
+    <?php if($_SESSION['user_data']['username'] === $_GET['user']): ?>
+
+        <a href="">Activer le compte</a>
+
+    <?php endif; ?>
+
 <?php endif; ?>
-<?php endif; ?>
+
+<h4>Activité</h4>
+
+<?php include '_article_container.phtml'; ?>

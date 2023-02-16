@@ -20,6 +20,18 @@ class ProfileController {
             $activated = true;
         }
         
+        $model = new \Models\Articles();
+        $articles = $model->getAllArticlesFromUser($_GET['user']);
+        
+        foreach($articles as $article) {
+            $_SESSION['article-tokens'][] = [
+                'id' => $article['id'],
+                'token' => bin2hex(random_bytes(5))
+            ];
+        }
+        
+        $model = new \Models\Comments();
+        $comments = $model->getAllComments();
         
         
         $template = "profil.phtml";
