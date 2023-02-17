@@ -32,6 +32,11 @@ if(array_key_exists('route', $_GET)) {
                             $controller->writeNewComment();
                         break;
                         
+                        case 'delete-comment':
+                            $controller = new Controllers\CommentController();
+                            $controller->deleteComment();
+                        break;
+                        
                         default:
                             header('Location: index.php?route=dashboard');
                             exit;

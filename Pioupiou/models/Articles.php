@@ -8,7 +8,7 @@ class Articles extends Database {
     
     public function getAllArticles()
     {
-        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, users.username, user_profile.image_path
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username, user_profile.image_path
                 FROM articles
                 INNER JOIN users
                 ON articles.user_id = users.id
@@ -20,7 +20,7 @@ class Articles extends Database {
     
     public function getAllArticlesFromUser($user)
     {
-        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, users.username
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username
                 FROM articles
                 INNER JOIN users
                 ON articles.user_id = users.id
@@ -35,8 +35,8 @@ class Articles extends Database {
     
     public function writeArticle($data)
     {
-        $req = "INSERT INTO articles (user_id, title, content) 
-                VALUES (:user, :title, :content)";
+        $req = "INSERT INTO articles (user_id, title, content, audio_file, image_path) 
+                VALUES (:user, :title, :content, :audio, :image)";
         
         $this->createNew($req, $data);
     }

@@ -1,8 +1,13 @@
 <div class="article-form card-type-1">
-    <form action="index.php?route=dashboard&action=post" method="post">
+    <form action="index.php?route=dashboard&action=post" method="post" enctype="multipart/form-data">
         <?php include_once '__errors.phtml'; ?>
         <input type="hidden" name="article-title" placeholder="Titre de votre post" value="xxx"/>
         <textarea type="text"  name="article-content" placeholder="Contenu de votre post"></textarea>
+        <div class="media-inputs">
+            <input type="file" name="article-audio">
+            <input type="file" name="article-image">
+        </div>
+        
         <input type="submit" value="Publier"/>
     </form>
 </div>

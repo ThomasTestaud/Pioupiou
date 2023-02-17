@@ -28,33 +28,44 @@ class ArticleController {
         
         $errors = [];
         
-        if(array_key_exists('article-title', $_POST) && array_key_exists('article-content', $_POST)) {
+        if(array_key_exists('article-content', $_POST)) {
         
             $newArticle = [
-                'user_id' => trim($_SESSION['user_data']['user_id']),
-                'article-title' => trim($_POST['article-title']),
-                'article-content' => trim($_POST['article-content'])
+                'user' => trim($_SESSION['user_data']['user_id']),
+                'title' => trim($_POST['article-title']),
+                'content' => trim($_POST['article-content']),
+                'audio' => null,
+                'image' => null
             ];
         }
+        
+        if(empty($newArticle['content'])) {
+            $errors[] = "Veuillez saisir un texte";
+        }
+    
+        if(!empty($_FILES['article-audio']['name'])) {
             
-        if(empty($newArticle['article-title'])) {
-            $errors[] = "Veuillez saisir un titre";
+            $fileName = bin2hex(random_bytes(7)) . basename($_FILES['article-audio']['name']);
+            $target_path = 'public/uploads/audio_files/' . $fileName;
+            move_uploaded_file($_FILES['article-audio']['tmp_name'], $target_path);
+            $newArticle['audio'] = $fileName;
+            
         }
         
-        if(empty($newArticle['article-content'])) {
-            $errors[] = "Veuillez saisir un texte";
+        if(!empty($_FILES['article-image']['name'])) {
+            
+            $fileName = bin2hex(random_bytes(7)) . basename($_FILES['article-image']['name']);
+            $target_path = 'public/uploads/article_img/' . $fileName;
+            
+            move_uploaded_file($_FILES['article-image']['tmp_name'], $target_path);
+            
+            $newArticle['image'] = $fileName;
         }
         
         if(count($errors) == 0) {
             
-            $data = [
-                'user' => $newArticle['user_id'],
-                'title' => $newArticle['article-title'],
-                'content' => $newArticle['article-content']
-            ];
-                    
             $model = new \Models\Articles();
-            $model->writeArticle($data);
+            $model->writeArticle($newArticle);
             
         }
         
@@ -79,20 +90,13 @@ class ArticleController {
         }
         
         if($tokenSession !== $_POST['article-token']){
-            $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
+            $errors[] = "Erreur, vous n'avez pas les droits pour supprimer cet article";
         }
-        
-        var_dump($_SESSION['article-tokens']);
-        var_dump($tokenSession);
-        var_dump($_POST['article-token']);
-        var_dump($errors);
         
         if(count($errors) === 0) {
             $model = new \Models\Articles();
             $model->deleteArticle($_POST['article-id']);
         }
-        
-        
         
         header('Location: index.php?route=dashboard');
         exit;

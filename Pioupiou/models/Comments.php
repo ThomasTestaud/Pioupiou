@@ -23,4 +23,15 @@ class Comments extends Database {
         
         $this->createNew($req, $data);
     }
+    
+    public function deleteComment($commentId)
+    {
+        $req = "UPDATE `comments` SET `validate`= 0 WHERE id = :id";
+        
+        $params = [
+            'id' => $commentId    
+        ];
+        
+        $this->createNew($req, $params);
+    }
 }
