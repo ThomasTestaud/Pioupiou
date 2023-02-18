@@ -50,13 +50,38 @@ if(array_key_exists('route', $_GET)) {
             break;
             
             case 'profile':
+                
+                if(isset($_GET['user'])){
+                    $controller = new Controllers\ProfileController();
+                    $controller->displayProfile();
+                }else{
+                    header('Location: index.php?route=profile&user='. $_SESSION['user_data']['username']);
+                    exit;
+                }
+            break;
+            
+            case 'edit-profile':
                 $controller = new Controllers\ProfileController();
-                $controller->displayProfile();
+                $controller->editProfile();
+            break;
+            
+            case 'update-profile':
+                echo 'update profile';
+                die();
+            break;
+            
+            case 'article':
+                $controller = new Controllers\ArticleController();
+                $controller->displayOneArticle();
             break;
             
             case 'disconnect':
                 $controller = new Controllers\UserController();
                 $controller->disconnect();
+            break;
+            
+            case '404':
+                require 'views/erreur404.phtml';
             break;
             
             case 'welcome':

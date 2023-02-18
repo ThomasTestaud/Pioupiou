@@ -1,0 +1,31 @@
+<form action="index.php?route=update-profile" method="post" enctype="multipart/form-data">
+<div class="profile-card">
+    <div class="banner-pic">
+        <img src="public/uploads/profile_img/<?= htmlspecialchars($profileInfos['banner_image']) ?>" alt="photo de banière">
+        <input type="file" name="banner">
+    </div>
+    <div class="main">
+        <div class="side">
+            <h3>
+                <input type="text" name="email" value="<?= $profileInfos['username'] ?>">
+            </h3>
+        </div>
+        <div class="center">
+            <div class="profile-pic">
+                <img src="public/uploads/profile_img/<?= htmlspecialchars($profileInfos['image_path']) ?>" alt="photo de <?= htmlspecialchars($profileInfos['username']) ?>">
+                <input type="file" name="profile">
+            </div>
+        </div>
+        <div class="side">
+            <input type="text" name="email" value="<?= htmlspecialchars($profileInfos['email']) ?>">
+        </div>
+    </div>
+    
+    <div class="footer">
+        <textarea type="text" name="description"><?= htmlspecialchars($profileInfos['description']) ?></textarea>
+    </div>
+    
+</div>
+
+<input type="submit" name="Valider les modifications"/>
+</form>

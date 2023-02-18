@@ -1,27 +1,27 @@
-<h2>Profil</h2>
-<img src="public/uploads/profile_img/<?= $profileInfos['image_path'] ?>" alt="photo de <?= htmlspecialchars($profileInfos['username']) ?>">
-<h3><?= $profileInfos['username'] ?></h3>
-<a href="mailto:<?= htmlspecialchars($profileInfos['email']) ?>"><?= htmlspecialchars($profileInfos['email']) ?></a>
+<div class="profile-card">
+    <div class="modify">
+        <a href="index.php?route=edit-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+        </a>
+    </div>
+    <div class="banner-pic">
+        <img src="public/uploads/profile_img/<?= htmlspecialchars($profileInfos['banner_image']) ?>" alt="photo de banière">
+    </div>
+    <div class="main">
+        <div class="side"><h3><?= $profileInfos['username'] ?></h3></div>
+        <div class="center">
+            <div class="profile-pic">
+                <img src="public/uploads/profile_img/<?= htmlspecialchars($profileInfos['image_path']) ?>" alt="photo de <?= htmlspecialchars($profileInfos['username']) ?>">
+            </div>
+        </div>
+        <div class="side">
+            <a href="mailto:<?= htmlspecialchars($profileInfos['email']) ?>"><?= htmlspecialchars($profileInfos['email']) ?></a>
+        </div>
+    </div>
+    
+    <div class="footer"><p><?= htmlspecialchars($profileInfos['description']) ?></p></div>
+    
+</div>
 
-<p>Date et heure de création du compte : <?= $profileInfos['creation_date'] ?></p>
-
-<?php if($activated === true): ?>
-
-    <?= htmlspecialchars($profileInfos['last_login_date']) ?>
-    <?= htmlspecialchars($profileInfos['description']) ?>
-
-<?php else: ?>
-
-    <p>Ce compte n'a pas été activé par l'utilisateur</p>
-
-    <?php if($_SESSION['user_data']['username'] === $_GET['user']): ?>
-
-        <a href="">Activer le compte</a>
-
-    <?php endif; ?>
-
-<?php endif; ?>
-
-<h4>Activité</h4>
 
 <?php include '_article_container.phtml'; ?>

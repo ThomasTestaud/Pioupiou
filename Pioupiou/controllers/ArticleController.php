@@ -20,6 +20,54 @@ class ArticleController {
         return $articles;
     }
     
+    public function displayOneArticle()
+    {
+        //verify user is connecter
+        $model = new \Models\Users();
+        $model->isConnected();
+        
+        if(!isset($_GET['id'])) {
+            header('Location: index.php?route=404');
+            exit;
+        }
+        
+        //fetch the article
+        $articlesModel = new \Models\Articles();
+        $articles = $articlesModel->getOneArticleFromId($_GET['id']);
+        
+        if(empty($articles)){
+            header('Location: index.php?route=404');
+            exit;
+        }
+        
+        $_SESSION['article-tokens'] = [];
+        
+        foreach($articles as $article) {
+            $_SESSION['article-tokens'][] = [
+                'id' => $article['id'],
+                'token' => bin2hex(random_bytes(5))
+            ];
+        }
+        
+        //fetch the comments of that article
+        $commentsModel = new \Models\Comments();
+        $comments = $commentsModel->getAllComments();
+        
+        $_SESSION['comment-tokens'] = [];
+        
+        
+        foreach($comments as $comment) {
+            $_SESSION['comment-tokens'][] = [
+                'id' => $comment['id'],
+                'token' => bin2hex(random_bytes(5))
+            ];
+        }
+        
+        //display view
+        $template = "article.phtml";
+        include_once 'views/layout.phtml';
+    }
+    
     public function writeNewArticle(): void
     {
         

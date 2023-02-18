@@ -18,6 +18,23 @@ class Articles extends Database {
         return $this->findAll($req);
     }
     
+    public function getOneArticleFromId($id)
+    {
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username, user_profile.image_path
+                FROM articles
+                INNER JOIN users
+                ON articles.user_id = users.id
+                LEFT JOIN user_profile
+                ON users.id = user_profile.user_id
+                WHERE articles.validate != 0 AND users.validate != 0 AND articles.id = :id;";
+                
+        $params = [
+            'id' => $id
+        ];
+        
+        return $this->findAll($req, $params);
+    }
+    
     public function getAllArticlesFromUser($user)
     {
         $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username

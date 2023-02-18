@@ -116,10 +116,6 @@ input[type="file"] {
 }
 
 
-.profil-card {
-    padding: 0.5rem;
-}
-
 
 
 /***************************************************************************************************************************************
@@ -176,7 +172,7 @@ DASHBOARD
 
 .post {
     background-color: white;
-    max-width: 40rem;
+    max-width: 50rem;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     margin: 1rem auto;
@@ -212,6 +208,7 @@ DASHBOARD
 }
 
 .post .post-head a {
+    height: 1rem;
     display: flex;
     align-items: center;
 }
@@ -229,9 +226,17 @@ DASHBOARD
     cursor: pointer;
 }
 
-.post svg:hover {
-    color: red;
+.post .post-head svg {
+    margin-left: 1rem;
     height: 1.2rem;
+}
+
+.post svg:hover {
+    height: 1.4rem;
+}
+
+.post form svg:hover {
+    color: red;
 }
 
 .post .post-text {
@@ -248,11 +253,18 @@ DASHBOARD
 }
 
 .post .post-media img {
-    width: 100%;
-    height: 10rem;
     object-fit: cover;
     width: 100%;
+    height: 10rem;
+    transition: height 0.5s;
 }
+
+/*.post .post-media img:hover {
+    */
+
+/*    height: 40rem;*/
+
+/*}*/
 
 .post .post-media audio {
     margin-bottom: 0.7rem;
@@ -348,4 +360,92 @@ DASHBOARD
     width: 100%;
     padding: 1.5em;
 
+}
+
+
+
+
+/***************************************************************************************************************************************
+PROFILE
+***********************************************************************************************************************************/
+
+.profile-card {
+    background-color: white;
+    max-width: 50rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    margin: 1rem auto;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.profile-card .modify svg {
+    height: 3rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.5s;
+}
+
+.profile-card .modify svg:hover {
+    opacity: 1;
+}
+
+/******IMAGE*****/
+
+.profile-card .banner-pic img {
+    object-fit: cover;
+    width: 100%;
+    height: 20em;
+}
+
+.profile-card .profile-pic {
+    position: absolute;
+
+    top: 15em;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    background-color: white;
+    padding: 0.5em;
+}
+
+.profile-card .profile-pic img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/**********MAIN***********/
+
+.profile-card .main {
+    display: flex;
+    justify-content: space-between;
+    height: 4em;
+}
+
+.profile-card .main .side {
+    text-align: center;
+    width: 40%;
+    padding: 0 1rem;
+}
+
+.profile-card .main .center {
+    width: 10em;
+}
+
+/***********FOOTER***********/
+
+.profile-card .footer {
+    padding: 1rem;
+    text-align: center;
 }
