@@ -12,7 +12,7 @@ class Comments extends Database {
                 ON comments.user_id = users.id
                 LEFT JOIN user_profile
                 ON user_profile.user_id = comments.user_id
-                WHERE comments.validate != 0 AND users.validate != 0";
+                WHERE comments.validate != 0 AND users.validate != 0 ORDER BY id";
         return $this->findAll($req);
     }
     

@@ -23,5 +23,6 @@
     
 </div>
 
-
-<?php include '_article_container.phtml'; ?>
+<?php if($articles[0]['id'] !== null): ?>
+    <?php include '_article_container.phtml'; ?>
+<?php endif; ?>

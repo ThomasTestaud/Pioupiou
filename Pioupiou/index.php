@@ -42,10 +42,14 @@ if(array_key_exists('route', $_GET)) {
                             exit;
                         break;
                     }
+                    
                 }
                 
+                $controller = new Controllers\ArticleController();
+                $articles_data = $controller->getAllArticles();
+                
                 $controller = new Controllers\DashboardController();
-                $controller->displayDashboard();
+                $controller->displayDashboard($articles_data);
                 
             break;
             

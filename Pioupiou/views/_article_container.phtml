@@ -1,6 +1,8 @@
 <div class="article-container">
     
     <?php foreach($articles as $article): ?>
+        <?php if($article['validate'] !== 0): ?>
+                    
     
         <article class="post">
             
@@ -55,7 +57,7 @@
             <div class="post-comments">
                 <?php foreach($comments as $comment): ?>
                 
-                    <?php if($comment['article_id'] === $article['id']): ?>
+                    <?php if($comment['article_id'] === $article['id'] && $comment['validate']): ?>
                         
                         <div class="comment-container">
                             
@@ -102,6 +104,8 @@
             
         </article>
         
+        
+        <?php endif; ?>
     <?php endforeach; ?>
     
 </div>

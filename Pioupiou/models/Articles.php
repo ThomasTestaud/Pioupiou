@@ -8,25 +8,41 @@ class Articles extends Database {
     
     public function getAllArticles()
     {
-        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username, user_profile.image_path
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, articles.validate AS article_validate, a.username, user_profile.image_path, comments.id AS comment_id, comments.user_id AS comment_user_id, comments.article_id AS comment_article_id, comments.content AS comment_content, comments.time_stamp  AS comment_time_stamp, comments.validate  AS comment_validate, b.username AS comment_username, c.image_path AS comment_image
                 FROM articles
-                INNER JOIN users
-                ON articles.user_id = users.id
+                INNER JOIN users a
+                ON articles.user_id = a.id
                 LEFT JOIN user_profile
-                ON users.id = user_profile.user_id
-                WHERE articles.validate != 0 AND users.validate != 0 ORDER BY articles.id DESC;";
+                ON a.id = user_profile.user_id
+                LEFT JOIN comments
+                ON articles.id = comments.article_id
+                LEFT JOIN users b
+                ON comments.user_id = b.id
+                LEFT JOIN user_profile c
+                ON b.id = c.user_id
+                WHERE articles.validate != 0 
+                AND a.validate != 0  
+                ORDER BY articles.id DESC;";
         return $this->findAll($req);
     }
     
     public function getOneArticleFromId($id)
     {
-        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, users.username, user_profile.image_path
+        $req = "SELECT articles.id, articles.title, articles.content, articles.time_stamp, articles.audio_file, articles.image_path AS article_image, articles.validate AS article_validate, a.username, user_profile.image_path, comments.id AS comment_id, comments.user_id AS comment_user_id, comments.article_id AS comment_article_id, comments.content AS comment_content, comments.time_stamp  AS comment_time_stamp, comments.validate  AS comment_validate, b.username AS comment_username, c.image_path AS comment_image
                 FROM articles
-                INNER JOIN users
-                ON articles.user_id = users.id
+                INNER JOIN users a
+                ON articles.user_id = a.id
                 LEFT JOIN user_profile
-                ON users.id = user_profile.user_id
-                WHERE articles.validate != 0 AND users.validate != 0 AND articles.id = :id;";
+                ON a.id = user_profile.user_id
+                LEFT JOIN comments
+                ON articles.id = comments.article_id
+                LEFT JOIN users b
+                ON comments.user_id = b.id
+                LEFT JOIN user_profile c
+                ON b.id = c.user_id
+                WHERE articles.validate != 0 
+                AND a.validate != 0 
+                AND articles.id = :id;";
                 
         $params = [
             'id' => $id
