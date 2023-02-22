@@ -29,4 +29,71 @@ class Profile extends Database {
         return $this->findAll($req, $params);
     }
     
+    public function checkIfUserProfileExist($userId)
+    {
+        $req = "SELECT id FROM `user_profile` WHERE user_id = :user";
+        $params = [
+            "user" => $userId
+        ];
+        return $this->findOne($req, $params);
+    }
+    
+    public function createUserProfile($data)
+    {
+        $req = "INSERT INTO `user_profile`(`user_id`, `description`, `image_path`, `banner_image`) 
+                                    VALUES (:userId, :description, :profileImage,:bannerImage)";
+                                    
+        $params = [
+            'userId' => $data['userId'],
+            'description' => $data['description'],
+            'profileImage' => $data['banner_image'],
+            'bannerImage' => $data['profile_image']
+        ];
+        
+        $this->createNew($req, $params);
+    }
+    
+    public function updateUserProfile($data)
+    {
+        $req = "UPDATE `user_profile` SET `description`= :description,`image_path`= :profileImage,`banner_image`= :bannerImage WHERE user_id = :userId";
+    
+        $params = [
+            'userId' => $data['userId'],
+            'description' => $data['description'],
+            'profileImage' => $data['banner_image'],
+            'bannerImage' => $data['profile_image']
+        ];
+        
+        $this->update($req, $params);
+    }
+    
+    public function updateBanner($data)
+    {
+        $req = "UPDATE `user_profile` SET `banner_image`= :bannerImage WHERE user_id = :userId";
+    
+        $params = [
+            'userId' => $_SESSION['user_data']['user_id'],
+            'bannerImage' => $data
+        ];
+        
+        $this->update($req, $params);
+    }
+    
+    public function updateProfilePicture($data)
+    {
+        $req = "UPDATE `user_profile` SET `image_path`= :profileImage WHERE user_id = :userId";
+    
+        $params = [
+            'userId' => $_SESSION['user_data']['user_id'],
+            'profileImage' => $data
+        ];
+        
+        $this->update($req, $params);
+    }
+    
+    public function updateDescription($data)
+    {
+        
+    }
+    
 }

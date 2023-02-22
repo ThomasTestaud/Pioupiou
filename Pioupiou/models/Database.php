@@ -41,4 +41,9 @@ class Database {
         $query->execute($params);
         return $this->bdd->lastInsertId();
     }
+    
+    protected function update($req, $params =[]){
+        $query = $this->bdd->prepare($req);
+        $query->execute($params);
+    }
 }

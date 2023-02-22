@@ -64,14 +64,35 @@ if(array_key_exists('route', $_GET)) {
                 }
             break;
             
-            case 'edit-profile':
+            
+            case 'update-description':
                 $controller = new Controllers\ProfileController();
-                $controller->editProfile();
+                $controller->updateDescription();
             break;
             
-            case 'update-profile':
-                echo 'update profile';
-                die();
+            case 'update-banner':
+                $controller = new Controllers\ProfileController();
+                $controller->updateBanner();
+            break;
+            
+            case 'update-profile-photo':
+                $controller = new Controllers\ProfileController();
+                $controller->updateProfilePicture();
+            break;
+            
+            case 'edit-description':
+                $controller = new Controllers\ProfileController();
+                $controller->editDescription();
+            break;
+            
+            case 'edit-banner':
+                $controller = new Controllers\ProfileController();
+                $controller->editBanner();
+            break;
+            
+            case 'edit-profile-photo':
+                $controller = new Controllers\ProfileController();
+                $controller->editProfilePicture();
             break;
             
             case 'article':

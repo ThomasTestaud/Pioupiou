@@ -13,6 +13,7 @@ class ProfileController {
         $profile_data = $this->fetchAndSortProfileData($_GET['user']);
         
         $profileInfos = $profile_data[0];
+        
         //Apply default information if empty
         $profileInfos['banner_image'] = $profileInfos['banner_image'] ?? 'default_banner.png';
         $profileInfos['image_path'] = $profileInfos['image_path'] ?? 'default_profile.png';
@@ -23,28 +24,6 @@ class ProfileController {
         $comments = $profile_data[2];
         
         $template = "profil.phtml";
-        include_once 'views/layout.phtml';
-    }
-    
-    public function editProfile(): void
-    {
-        
-        $model = new \Models\Users();
-        $model->isConnected();
-        
-        $model = new \Models\Profile();
-        $profileInfos = $model->getProfileInfos($_SESSION['user_data']['username']);
-        //var_dump($profileInfos);die();
-        
-        if($profileInfos['image_path'] === null){
-            $profileInfos['image_path'] = 'default_profile.png';
-            /////////***************CREER LA TABLE USER_PROFILE ICI*************///////////
-        }
-        $profileInfos['banner_image'] = $profileInfos['banner_image'] ?? 'default_banner.png';
-        $profileInfos['image_path'] = $profileInfos['image_path'] ?? 'default_profile.png';
-        $profileInfos['description'] = $profileInfos['description'] ?? 'Cette description est vide...';
-        
-        $template = "profil_edit.phtml";
         include_once 'views/layout.phtml';
     }
     
@@ -126,5 +105,92 @@ class ProfileController {
         return $profile_data;
         
     }
-
+    
+    public function verifyUpdateProfileForm()
+    {
+        if(array_key_exists('description', $_POST)) {
+                
+                $profileUser = [
+                    'userId' => $_SESSION['user_data']['user_id'],
+                    'description' => trim($_POST['description']),
+                    'banner_image' => null,
+                    'profile_image' => null
+                ];
+            
+                if(!empty($_FILES['banner']['name']) && $_FILES['banner']['type'] === 'image/png' || $_FILES['banner']['type'] === 'image/jpg'){
+                    echo 'passbanner';
+                    $fileName = bin2hex(random_bytes(15)) . ".png";
+                    $target_path = 'public/uploads/profile_img/' . $fileName;
+                    move_uploaded_file($_FILES['banner']['tmp_name'], $target_path);
+                    $profileUser['banner_image'] = $fileName;
+                }
+                
+                if(!empty($_FILES['profile']['name']) && $_FILES['profile']['type'] === 'image/png' || $_FILES['profile']['type'] === 'image/jpg'){
+                    echo 'passprofile';
+                    $fileName = bin2hex(random_bytes(15)) . ".png";
+                    $target_path = 'public/uploads/profile_img/' . $fileName;
+                    move_uploaded_file($_FILES['profile']['tmp_name'], $target_path);
+                    $profileUser['profile_image'] = $fileName;
+                }
+                
+                return $profileUser;
+        }
+    }
+    
+    public function updateBanner()
+    {
+        
+        if(!empty($_FILES['banner']['name']) && $_FILES['banner']['type'] === 'image/png'){
+            
+            $fileName = bin2hex(random_bytes(15)) . ".png";
+            $target_path = 'public/uploads/profile_img/' . $fileName;
+            move_uploaded_file($_FILES['banner']['tmp_name'], $target_path);
+            
+            $model = new \Models\Profile();
+            $model->updateBanner($fileName);
+        }
+        header('Location: index.php?route=profile');
+        exit;
+    }
+    
+    public function updateProfilePicture()
+    {
+        if(!empty($_FILES['profile']['name']) && $_FILES['profile']['type'] === 'image/png' || $_FILES['profile']['type'] === 'image/jpg'){
+            
+            $fileName = bin2hex(random_bytes(15)) . ".png";
+            $target_path = 'public/uploads/profile_img/' . $fileName;
+            move_uploaded_file($_FILES['profile']['tmp_name'], $target_path);
+            
+            $model = new \Models\Profile();
+            $model->updateProfilePicture($fileName);
+        }
+        header('Location: index.php?route=profile');
+        exit;
+    }
+    
+    public function updateDescription()
+    {
+        echo 'updateDescription';
+        die();
+    }
+    
+    public function editBanner()
+    {
+        $template = "edit_banner.phtml";
+        include_once 'views/layout.phtml';
+    }
+    
+    public function editProfilePicture()
+    {
+        $template = "edit_profile_photo.phtml";
+        include_once 'views/layout.phtml';
+    }
+    
+    public function editDescription()
+    {
+        $template = "edit_description.phtml";
+        include_once 'views/layout.phtml';
+    }
+    
+    
 }

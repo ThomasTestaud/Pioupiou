@@ -75,7 +75,7 @@ RE-USABLE CARDS
     display: flex;
 }
 
-input[type="file"] {
+.card-type-1 input[type="file"] {
     opacity: 0;
     position: absolute;
     height: 2.5rem;
@@ -388,10 +388,11 @@ PROFILE
     padding: 0.5rem;
     border-radius: 50%;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
     opacity: 0.6;
     transition: opacity 0.5s;
+    z-index: 1;
 }
 
 .profile-card .modify svg:hover {
@@ -408,7 +409,6 @@ PROFILE
 
 .profile-card .profile-pic {
     position: absolute;
-
     top: 15em;
     left: 50%;
     transform: translate(-50%, 0%);
@@ -424,6 +424,7 @@ PROFILE
     width: 100%;
     height: 100%;
     border-radius: 50%;
+
 }
 
 /**********MAIN***********/
@@ -442,6 +443,7 @@ PROFILE
 
 .profile-card .main .center {
     width: 10em;
+
 }
 
 /***********FOOTER***********/
@@ -449,4 +451,18 @@ PROFILE
 .profile-card .footer {
     padding: 1rem;
     text-align: center;
+    position: relative;
+}
+
+
+/*************************************************EDIT PROFILE****************************************************/
+
+.profile-card input[type="file"] {
+    z-index: 1;
+    padding: 1em;
+}
+
+.profile-card textarea {
+    width: 80%;
+    height: 10em;
 }
