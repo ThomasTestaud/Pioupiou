@@ -94,6 +94,7 @@
                 
             </div>
                 <form method="post" action="index.php?route=dashboard&action=comment&id=<?= $article['id'] ?>">
+                    <?php include_once '__errors.phtml'; ?>
                     <input 
                         type="hidden" 
                         name="article-token" 

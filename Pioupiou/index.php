@@ -100,6 +100,11 @@ if(array_key_exists('route', $_GET)) {
                 $controller->displayOneArticle();
             break;
             
+            case 'search':
+                $controller = new Controllers\SearchController();
+                $controller->displaySearch();
+            break;
+            
             case 'disconnect':
                 $controller = new Controllers\UserController();
                 $controller->disconnect();

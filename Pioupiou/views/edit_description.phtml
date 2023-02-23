@@ -1,7 +1,8 @@
 <form action="index.php?route=update-description" method="post" enctype="multipart/form-data">
 <div class="profile-card">
+    <?php include_once '__errors.phtml'; ?>
     <div class="footer">
-        <textarea type="text" name="description"></textarea>
+        <textarea type="text" name="description"><?= $_GET['description']; ?></textarea>
     </div>
     
 </div>

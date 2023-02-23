@@ -93,7 +93,14 @@ class Profile extends Database {
     
     public function updateDescription($data)
     {
+        $req = "UPDATE `user_profile` SET `description`= :description WHERE user_id = :userId";
+    
+        $params = [
+            'userId' => $_SESSION['user_data']['user_id'],
+            'description' => $data
+        ];
         
+        $this->update($req, $params);
     }
     
 }

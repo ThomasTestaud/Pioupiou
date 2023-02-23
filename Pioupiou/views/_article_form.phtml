@@ -2,7 +2,7 @@
     <form action="index.php?route=dashboard&action=post" method="post" enctype="multipart/form-data">
         <?php include_once '__errors.phtml'; ?>
         <input type="hidden" name="article-title" placeholder="Titre de votre post" value="xxx"/>
-        <textarea type="text"  name="article-content" placeholder="Contenu de votre post"></textarea>
+        <textarea type="text"  name="article-content" placeholder="Contenu de votre post"><?= $newArticle['content'] ?? '' ?></textarea>
         <div class="media-inputs">
             <button>Choisissez votre fichier MP3
             <input type="file" name="article-audio">

@@ -30,6 +30,10 @@ class CommentController {
             }
         }
         
+        if(strlen($newComment['content']) > 500) {
+            $errors[] = "Le texte ne dois pas dépasser les 500 charactère. Vous en avez saisi " . strlen($newComment['content']);
+        }
+        
         if($tokenSession !== $_POST['article-token']){
             $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
         }
@@ -45,10 +49,10 @@ class CommentController {
         if(count($errors) == 0) {
             $model = new \Models\Comments();
             $model->writeComment($newComment);
+            
         }
-        
-        header('Location: index.php?route=dashboard');
-        exit;
+            header('Location: index.php?route=article&id='.$_POST['article-id']);
+            exit;
         
     }
     
@@ -72,20 +76,10 @@ class CommentController {
             $errors[] = "Erreur, vous n'avez pas les droits pour commenter cet article";
         }
         
-        //($_SESSION['comment-tokens']);
-        // var_dump($tokenSession);
-        // var_dump($_POST['comment-token']);
-        // var_dump($errors);
-        // die();
-        
         if(count($errors) === 0) {
             $model = new \Models\Comments();
             $model->deleteComment($_POST['comment-id']);
-            // echo('delete');
-            // die();
         }
-        
-        
         
         header('Location: index.php?route=dashboard');
         exit;

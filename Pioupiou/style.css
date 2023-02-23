@@ -20,9 +20,14 @@ body {
     font-weight: light;
     background-color: var(--main-background);
     margin: 0px;
+    padding: 0px;
     position: relative;
     font-family: sans-serif;
     line-height: 2em;
+}
+
+main {
+    position: relative;
 }
 
 a {
@@ -142,6 +147,60 @@ header a {
     color: white;
 }
 
+header form {
+    width: 80%;
+    max-width: 20rem;
+}
+
+header form input {
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    border-radius: 3em;
+    width: 100%;
+}
+
+.search-window {
+    position: absolute;
+    top: 4rem;
+    background-color: white;
+    z-index: 2;
+    border-radius: 1rem;
+    margin: auto;
+    width: 80%;
+    max-width: 20rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.search-window::-webkit-scrollbar {
+    display: none;
+}
+
+.search-window a {
+    /*width: 100%;
+    */
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    color: black;
+    transition: background-color 0.5s;
+}
+
+.search-window a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.search-window a+a {
+    border-top: 1px solid var(--main-background);
+}
+
+.search-window img {
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
 
 /***************************************************************************************************************************************
 DASHBOARD
@@ -154,7 +213,7 @@ DASHBOARD
 }
 
 .dashboard-container>div {
-    margin: 10px;
+    margin: 1rem;
 }
 
 .vertical-border {

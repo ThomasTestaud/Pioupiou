@@ -1,0 +1,7 @@
+
+    <?php foreach($results as $result): ?>
+    <a href="index.php?route=profile&user=<?= $result['username'] ?>">
+        <img src="public/uploads/profile_img/<?= $result['image_path'] ?? 'default_profile.png'?>"></img>
+        <p><?= $result['username'] ?></p>
+    </a>
+    <?php endforeach; ?>

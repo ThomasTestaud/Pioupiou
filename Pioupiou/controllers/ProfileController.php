@@ -170,8 +170,29 @@ class ProfileController {
     
     public function updateDescription()
     {
-        echo 'updateDescription';
-        die();
+        
+        $errors = [];
+        
+        if(strlen($_POST['description']) > 500){
+            
+            $errors[] = 'Votre description ne doit pas dépasser les 500 charachtères. Vous en avez ' .  strlen($_POST['description']); 
+            
+        }
+        
+        //echo strlen($_POST['description']); echo count($errors); die
+        
+        if(count($errors) === 0) {
+            $model = new \Models\Profile();
+            $model->updateDescription($_POST['description']);
+            header('Location: index.php?route=profile');
+            exit;
+        }else{
+            $template = "edit_description.phtml";
+            include_once 'views/layout.phtml';
+        }
+        
+        
+        
     }
     
     public function editBanner()

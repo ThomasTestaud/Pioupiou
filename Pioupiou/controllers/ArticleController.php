@@ -59,20 +59,23 @@ class ArticleController {
             ];
         }
         
-        if(empty($newArticle['content'])) {
-            $errors[] = "Veuillez saisir un texte";
+        if(empty($newArticle['content']) && empty($_FILES['article-audio']['name']) && empty($_FILES['article-image']['name'])) {
+            $errors[] = "Veuillez remplir au moins l'un des trois champs";
         }
-    
+        
+        if(strlen($newArticle['content']) > 500) {
+            $errors[] = "Le texte ne dois pas dépasser les 500 charactère. Vous en avez saisi " . strlen($newArticle['content']);
+        }
+        
         if(!empty($_FILES['article-audio']['name'])) {
-            $fileName = bin2hex(random_bytes(7)) . basename($_FILES['article-audio']['name']);
+            $fileName = bin2hex(random_bytes(13)) . "mp3";
             $target_path = 'public/uploads/audio_files/' . $fileName;
             move_uploaded_file($_FILES['article-audio']['tmp_name'], $target_path);
             $newArticle['audio'] = $fileName;
-            
         }
         
         if(!empty($_FILES['article-image']['name'])) {
-            $fileName = bin2hex(random_bytes(7)) . basename($_FILES['article-image']['name']);
+            $fileName = bin2hex(random_bytes(13)) . "png";
             $target_path = 'public/uploads/article_img/' . $fileName;
             move_uploaded_file($_FILES['article-image']['tmp_name'], $target_path);
             $newArticle['image'] = $fileName;
@@ -81,10 +84,20 @@ class ArticleController {
         if(count($errors) == 0) {
             $model = new \Models\Articles();
             $model->writeArticle($newArticle);
+            
+            $_SESSION['notif'] = 'Votre post a bien été ajouté';
+            
+            header('Location: index.php?route=dashboard');
+            exit;
         }
         
-        header('Location: index.php?route=dashboard');
-        exit;
+        $articles_data = $this->getAllArticles();
+        
+        $articles = $articles_data[0];
+        $comments = $articles_data[1];
+        
+        $template = "dashboard.phtml";
+        include_once 'views/layout.phtml';
     }
     
     public function deleteArticle(): void
