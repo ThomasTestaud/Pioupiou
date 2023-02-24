@@ -1,0 +1,227 @@
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    #car-city-app {
+        background-color: #a7c957;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #car-city-app .car-city-container {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+
+    }
+
+    /****************************** CARS ************************/
+
+    #car-city-app .car-slot {
+        position: absolute;
+        top: -20px;
+        left: 0px;
+    }
+
+    #car-city-app .punto {
+        position: absolute;
+        height: 50px;
+        width: 30px;
+        border-radius: 10px;
+        background-color: blue;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        /*box - shadow: rgba(0, 0, 0, 0.4) 0 px 2 px 4 px, rgba(0, 0, 0, 0.3) 0 px 7 px 13 px - 3 px, rgba(0, 0, 0, 0.2) 0 px - 3 px 0 px inset, rgba(0, 0, 0, 0.40) 0 px 54 px 55 px, rgba(0, 0, 0, 0.20) 0 px - 12 px 30 px, rgba(0, 0, 0, 0.20) 0 px 4 px 6 px, rgba(0, 0, 0, 0.30) 0 px 12 px 13 px, rgba(0, 0, 0, 0.20) 0 px - 3 px 5 px;*/
+    }
+
+    #car-city-app .panda {
+        position: absolute;
+        height: 50px;
+        width: 25px;
+        border-radius: 7px;
+        background: rgb(255, 0, 0);
+        background: radial-gradient(circle, rgba(255, 0, 0, 1) 43%, rgba(87, 0, 0, 1) 100%);
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        /*box - shadow: rgba(0, 0, 0, 0.4) 0 px 2 px 4 px, rgba(0, 0, 0, 0.3) 0 px 7 px 13 px - 3 px, rgba(0, 0, 0, 0.2) 0 px - 3 px 0 px inset, rgba(0, 0, 0, 0.40) 0 px 54 px 55 px, rgba(0, 0, 0, 0.20) 0 px - 12 px 30 px, rgba(0, 0, 0, 0.20) 0 px 4 px 6 px, rgba(0, 0, 0, 0.30) 0 px 12 px 13 px, rgba(0, 0, 0, 0.20) 0 px - 3 px 5 px;*/
+    }
+
+    #car-city-app .headlights {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #car-city-app .headlight {
+        height: 6px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: #cec48c;
+        transition: 0.2s;
+    }
+
+    #car-city-app .headlight-on {
+        background-color: yellow;
+        box-shadow: 0px -5px 5px yellow, 0px -10px 10px yellow, 0px -15px 10px yellow, 0px -20px 15px yellow, 0px -20px 15px yellow;
+    }
+
+    #car-city-app .pare-brise {
+        margin-top: 5px;
+        height: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #car-city-app .pare-brise-av {
+        height: 8px;
+        width: 20px;
+        border-radius: 3px;
+        background: rgb(0, 245, 255);
+        background: linear-gradient(50deg, rgba(0, 245, 255, 1) 0%, rgba(255, 255, 255, 1) 33%, rgba(0, 219, 255, 1) 100%);
+    }
+
+    #car-city-app .pare-brise-ar {
+        height: 6px;
+        width: 20px;
+        border-radius: 3px;
+        background: rgb(0, 245, 255);
+        background: linear-gradient(50deg, rgba(0, 245, 255, 1) 0%, rgba(255, 255, 255, 1) 33%, rgba(0, 219, 255, 1) 100%);
+    }
+
+    #car-city-app .rearlights {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #car-city-app .rearlight {
+        height: 4px;
+        width: 7px;
+        border-radius: 50%;
+        background-color: #aa0808;
+        transition: 0.2s;
+    }
+
+    #car-city-app .rearlight-on {
+        background-color: orange;
+        box-shadow: 0px 5px 10px orange,
+        0px 5px 10px orange,
+        0px 5px 10px orange,
+        0px 5px 10px orange;
+    }
+
+
+    #car-city-app .human {
+        height: 15px;
+        width: 15px;
+        background-color: blue;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+
+
+
+
+    /*******************RC*****************/
+
+    #car-city-app .radio-controller {
+        z-index: 1;
+        position: fixed;
+        bottom: 3em;
+        left: 50%;
+        width: 240px;
+        height: 6em;
+        margin-left: -120px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 2px;
+        grid-row-gap: 2px;
+    }
+
+    #car-city-app .radio-controller button {
+        opacity: 0.5;
+        transition: opacity 0.3s;
+    }
+
+    #car-city-app .radio-controller button:hover {
+        opacity: 0.8;
+    }
+
+    #car-city-app .clicked {
+        opacity: 0.8;
+    }
+
+    #rc-up {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    #rc-down {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    #rc-left {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #rc-right {
+        grid-area: 2 / 3 / 3 / 4;
+    }
+
+    #rc-swap {
+        grid-area: 2 / 5 / 3 / 6;
+    }
+
+
+    /****************WALLLS***********/
+
+    #car-city-app .car-city-map {
+
+        position: relative;
+    }
+
+    #car-city-app .wall-slot {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    #car-city-app .wall-slot div {
+        border-radius: 30px;
+        background-color: grey;
+    }
+
+
+
+    /**********************POP-UP***********/
+
+    #car-city-app .end-game {
+        font-size: 20px;
+        position: fixed;
+        width: 90%;
+        height: 60%;
+        border: 1px solid black;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 1em;
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    #car-city-app .none {
+        display: none;
+    }
+    

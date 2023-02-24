@@ -105,6 +105,11 @@ if(array_key_exists('route', $_GET)) {
                 $controller->displaySearch();
             break;
             
+            case 'game':
+                $controller = new Controllers\GameController();
+                $controller->displayCarCity();
+            break;
+            
             case 'disconnect':
                 $controller = new Controllers\UserController();
                 $controller->disconnect();

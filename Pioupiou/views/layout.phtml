@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" type="text/css" />
-    <title>Pioupiou 2.0</title>
+    
+        <?php if($_GET['route'] === 'game'): ?>
+            <link rel="stylesheet" href="car.css" type="text/css" />
+        <?php endif; ?>
+    <title>Pioupiou</title>
 </head>
     <body>
         <header>
@@ -23,6 +27,7 @@
             <nav>
                 <a href="index.php?route=dashboard">Dashboard</a>
                 <a href="index.php?route=profile&user=<?= $_SESSION['user_data']['username']?>">Profil</a>
+                <a href="index.php?route=game">Jeux</a>
                 <a href="index.php?route=disconnect">Deconnexion</a>
             </nav>
             <?php endif; ?>
@@ -30,8 +35,11 @@
         <main>
             <?php include $template ?>
         </main>
-        <footer>
-        </footer>
-    <script type="text/javascript" src="public/js/main.js"></script>
+        
+        <script type="module" src="public/js/main.js"></script>
+        <?php if($_GET['route'] === 'game'): ?>
+            <script type="module" src="public/js/mainCarCity.js"></script>
+        <?php endif; ?>
+        
     </body>
 </html>
