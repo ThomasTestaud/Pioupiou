@@ -47,6 +47,8 @@ let camera = new Camera(container);
 
 
 //Création de la map
+
+//standard walls
 let wall1 = new Wall(1050, 2500, 100, 100);
 let wall2 = new Wall(2150, 2300, 100, 100);
 let wall3 = new Wall(250, 0, 250, 100);
@@ -56,7 +58,30 @@ let wall6 = new Wall(500, 800, 100, 100);
 let wall7 = new Wall(850, 100, 100, 100);
 let wall8 = new Wall(700, 350, 100, 100);
 let wall9 = new Wall(1200, 0, 100, 100);
-let wall10 = new Wall(1100, 400, 400, 100);
+let wall10 = new Wall(2100, 400, 400, 100);
+let wall21 = new Wall(2050, 2500, 100, 100);
+let wall22 = new Wall(2150, 2300, 100, 100);
+let wall23 = new Wall(2520, 0, 250, 100);
+let wall24 = new Wall(450, 2000, 100, 400);
+let wall25 = new Wall(500, 2800, 400, 100);
+let wall26 = new Wall(500, 1800, 100, 100);
+let wall27 = new Wall(2500, 100, 100, 100);
+let wall28 = new Wall(1500, 350, 100, 100);
+let wall29 = new Wall(1200, 0, 100, 100);
+let wall20 = new Wall(1100, 1000, 400, 100);
+let wall31 = new Wall(1050, 25000, 300, 100);
+let wall32 = new Wall(2150, 23000, 100, 500);
+let wall33 = new Wall(2250, 1500, 250, 350);
+// let wall34 = new Wall(300, 1200, 100, 500);
+// let wall35 = new Wall(1010, 100, 400, 100);
+// let wall36 = new Wall(1010, 2000, 600, 100);
+// let wall37 = new Wall(2510, 2000, 100, 400);
+// let wall38 = new Wall(2010, 1400, 100, 600);
+// let wall39 = new Wall(1010, 1600, 100, 300);
+// let wall30 = new Wall(1010, 2000, 500, 100);
+
+
+//border
 let wall11 = new Wall(4000, -80, 3100, 100);
 let wall12 = new Wall(-80, 3000, 100, 4100);
 let wall13 = new Wall(-80, -80, 3100, 100);

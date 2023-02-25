@@ -37,7 +37,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        /*box - shadow: rgba(0, 0, 0, 0.4) 0 px 2 px 4 px, rgba(0, 0, 0, 0.3) 0 px 7 px 13 px - 3 px, rgba(0, 0, 0, 0.2) 0 px - 3 px 0 px inset, rgba(0, 0, 0, 0.40) 0 px 54 px 55 px, rgba(0, 0, 0, 0.20) 0 px - 12 px 30 px, rgba(0, 0, 0, 0.20) 0 px 4 px 6 px, rgba(0, 0, 0, 0.30) 0 px 12 px 13 px, rgba(0, 0, 0, 0.20) 0 px - 3 px 5 px;*/
+        box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     }
 
     #car-city-app .panda {
@@ -50,8 +50,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-
-        /*box - shadow: rgba(0, 0, 0, 0.4) 0 px 2 px 4 px, rgba(0, 0, 0, 0.3) 0 px 7 px 13 px - 3 px, rgba(0, 0, 0, 0.2) 0 px - 3 px 0 px inset, rgba(0, 0, 0, 0.40) 0 px 54 px 55 px, rgba(0, 0, 0, 0.20) 0 px - 12 px 30 px, rgba(0, 0, 0, 0.20) 0 px 4 px 6 px, rgba(0, 0, 0, 0.30) 0 px 12 px 13 px, rgba(0, 0, 0, 0.20) 0 px - 3 px 5 px;*/
+        box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     }
 
     #car-city-app .headlights {
@@ -125,20 +124,17 @@
         background-color: blue;
         border-radius: 50%;
         position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     }
-
-
-
-
 
     /*******************RC*****************/
 
     #car-city-app .radio-controller {
         z-index: 1;
         position: fixed;
-        bottom: 3em;
+        bottom: 4em;
         left: 50%;
-        width: 240px;
+        width: 16em;
         height: 6em;
         margin-left: -120px;
         display: grid;
@@ -181,7 +177,6 @@
         grid-area: 2 / 5 / 3 / 6;
     }
 
-
     /****************WALLLS***********/
 
     #car-city-app .car-city-map {
@@ -196,11 +191,10 @@
     }
 
     #car-city-app .wall-slot div {
+        box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
         border-radius: 30px;
         background-color: grey;
     }
-
-
 
     /**********************POP-UP***********/
 
@@ -218,8 +212,6 @@
         align-items: center;
         justify-content: center;
     }
-
-
 
     #car-city-app .none {
         display: none;

@@ -2,11 +2,9 @@
     --main-background: rgb(225, 228, 234);
 }
 
-
 * {
     box-sizing: border-box;
     margin: 0px;
-    /*border: 1px solid red;*/
 }
 
 html,
@@ -48,81 +46,6 @@ textarea {
     font-size: 1rem;
 }
 
-/**************************************************
-RE-USABLE CARDS
-*************************************************/
-
-.card-type-1 {
-    background-color: white;
-    max-width: 50rem;
-    min-width: 20rem;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
-    margin: 1rem auto;
-}
-
-.card-type-1 form {
-    width: 100%;
-    padding: 0.7em;
-}
-
-.card-type-1 textarea {
-    background-color: var(--main-background);
-    border-radius: 1.5em;
-    border: 0px;
-    height: 2em;
-    width: 100%;
-    padding: 1.5em;
-    height: 6rem;
-}
-
-.card-type-1 .media-inputs {
-    display: flex;
-}
-
-.card-type-1 input[type="file"] {
-    opacity: 0;
-    position: absolute;
-    height: 2.5rem;
-    left: 0rem;
-    top: 0rem;
-    cursor: pointer;
-}
-
-.card-type-1 .media-inputs button {
-    margin-bottom: 0.5em;
-    background-color: #588ec4;
-    position: relative;
-    cursor: pointer;
-}
-
-
-.card-type-1 .media-inputs button+button {
-    margin-left: 0.5em;
-}
-
-.card-type-1 input,
-.card-type-1 button {
-    background-color: #1D7BE0;
-    border-radius: 1.5em;
-    border: 0px;
-    width: 100%;
-    padding: 0.5rem;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: background-color 0.5s;
-}
-
-.card-type-1 input:hover,
-.card-type-1 button:hover {
-    background-color: #1863b2;
-    cursor: pointer;
-}
-
-
-
-
 /***************************************************************************************************************************************
 HEADER
 ***********************************************************************************************************************************/
@@ -132,12 +55,11 @@ header {
     top: 0px;
     background-color: #007BE0;
     color: white;
-    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
-    padding: 20px;
+    padding: 0.3rem;
     text-align: center;
     z-index: 2;
 }
@@ -150,6 +72,7 @@ header a {
 header form {
     width: 80%;
     max-width: 20rem;
+    padding: 0rem;
 }
 
 header form input {
@@ -179,8 +102,6 @@ header form input {
 }
 
 .search-window a {
-    /*width: 100%;
-    */
     display: flex;
     align-items: center;
     padding: 0.5rem;
@@ -200,6 +121,66 @@ header form input {
     height: 2rem;
     border-radius: 50%;
     margin-right: 0.5rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav svg {
+    color: white;
+    height: 2rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/***************************************************************************************************************************************
+WELCOME
+***********************************************************************************************************************************/
+
+.welcome-card {
+    background-color: white;
+    max-width: 50rem;
+    min-width: 20rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    margin: 1rem auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.welcome-card form {
+    width: 100%;
+    padding: 0.7em;
+}
+
+.welcome-card input {
+    background-color: var(--main-background);
+    margin: 0.5rem 0;
+    border-radius: 1.5em;
+    border: 0px;
+    height: 2em;
+    width: 100%;
+    padding: 1.5em;
+
+}
+
+.welcome-card .submit input {
+    background-color: #1D7BE0;
+    border-radius: 1.5em;
+    border: 0px;
+    width: 100%;
+    padding: 0.5rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.welcome-card .submit input:hover {
+    background-color: #1863b2;
 }
 
 /***************************************************************************************************************************************
@@ -226,8 +207,80 @@ DASHBOARD
     top: 0rem;
 }
 
+/**************************************************
+article-form
+*************************************************/
 
-/**********************************POST********************************/
+.article-form {
+    background-color: white;
+    max-width: 50rem;
+    min-width: 20rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    margin: 1rem auto;
+}
+
+.article-form form {
+    width: 100%;
+    padding: 0.7em;
+}
+
+.article-form textarea {
+    background-color: var(--main-background);
+    border-radius: 1.5em;
+    border: 0px;
+    height: 2em;
+    width: 100%;
+    padding: 1.5em;
+    height: 6rem;
+}
+
+.article-form .media-inputs {
+    display: flex;
+}
+
+.article-form input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    height: 2.5rem;
+    left: 0rem;
+    top: 0rem;
+    cursor: pointer;
+}
+
+.article-form .media-inputs button {
+    margin-bottom: 0.5em;
+    background-color: #588ec4;
+    position: relative;
+    cursor: pointer;
+}
+
+.article-form .media-inputs button+button {
+    margin-left: 0.5em;
+}
+
+.article-form input,
+.article-form button {
+    background-color: #1D7BE0;
+    border-radius: 1.5em;
+    border: 0px;
+    width: 100%;
+    padding: 0.5rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.5s;
+}
+
+.article-form input:hover,
+.article-form button:hover {
+    background-color: #1863b2;
+    cursor: pointer;
+}
+
+/**************************************************
+article
+*************************************************/
 
 .post {
     background-color: white;
@@ -236,8 +289,6 @@ DASHBOARD
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     margin: 1rem auto;
 }
-
-
 
 .post .post-head {
     display: flex;
@@ -319,13 +370,6 @@ DASHBOARD
     transition: height 0.5s;
 }
 
-/*.post .post-media img:hover {
-    */
-
-/*    height: 40rem;*/
-
-/*}*/
-
 .post .post-media audio {
     margin-bottom: 0.7rem;
     opacity: 0.7;
@@ -358,8 +402,6 @@ DASHBOARD
 .post .comment-container {
     display: flex;
     margin: 0.7rem;
-    /*width: 100%;
-    */
 }
 
 .post .comment-container img {
@@ -369,7 +411,6 @@ DASHBOARD
 
 .post .comment-container .comment-sub-container {
     margin-left: 0.5rem;
-    /*width: 100%;*/
 }
 
 .post .post-comments .comment {
@@ -406,7 +447,6 @@ DASHBOARD
     height: 1rem;
 }
 
-
 .post form {
     width: 100%;
     padding: 0.7em;
@@ -422,9 +462,6 @@ DASHBOARD
 
 }
 
-
-
-
 /***************************************************************************************************************************************
 PROFILE
 ***********************************************************************************************************************************/
@@ -437,7 +474,6 @@ PROFILE
     margin: 1rem auto;
     overflow: hidden;
     position: relative;
-
 }
 
 .profile-card .modify svg {
@@ -483,7 +519,6 @@ PROFILE
     width: 100%;
     height: 100%;
     border-radius: 50%;
-
 }
 
 /**********MAIN***********/
@@ -502,7 +537,6 @@ PROFILE
 
 .profile-card .main .center {
     width: 10em;
-
 }
 
 /***********FOOTER***********/
@@ -524,4 +558,25 @@ PROFILE
 .profile-card textarea {
     width: 80%;
     height: 10em;
+}
+
+@media screen and (max-width: 575px) {
+    h1 {
+        display: none;
+    }
+
+    nav {
+        position: fixed;
+        bottom: 0rem;
+        left: 0rem;
+        right: 0rem;
+        background-color: var(--main-background);
+        box-shadow: black 2px 2px 4px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    nav svg {
+        color: black;
+    }
 }

@@ -1,12 +1,17 @@
+<div class="welcome-card">
+    
 <h3>Connexion</h3>
 
 <form action="index.php?route=welcome&action=login-submit" method="post">
     <?php include_once '__errors.phtml'; ?>
     <input type="text" name="login-id" placeholder="E-mail/Pseudo" value="<?= isset($connectUser['login-id']) ? $connectUser['login-id'] : ''; ?>"/>
     <input type="password" name="login-password" placeholder="Mot de passe" value="<?= isset($connectUser['login-password']) ? $connectUser['login-password'] : ''; ?>"/>
-    <input type="submit" value="Se connecter"/>
+    <div class="submit">
+        <input type="submit" value="Se connecter"/>
+    </div>
 </form>
 
 <p>ou</p>
 
 <a href="index.php?route=welcome&action=register">Créer un compte</a>
+</div>
