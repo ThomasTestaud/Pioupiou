@@ -1,9 +1,16 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
-
+    let newPost = document.querySelector('#new-post');
+    let articleForm = document.querySelector('.article-form');
+    let backlay = document.querySelector('.backlay');
+    let searchform = document.querySelector('#search-form');
     let searchBar = document.querySelector('#search');
     let target = document.getElementById("target");
     let main = document.querySelector('main');
+    let nav = document.querySelector('nav');
+
+    /************************* SEARCH BAR ****************************/
+
 
     //display the seach in the search window
     searchBar.addEventListener('keyup', function() {
@@ -16,6 +23,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             .then(res => res.text())
             .then(res => {
                 target.innerHTML = res;
+
+                backlay.classList.remove('none');
+
             })
     });
 
@@ -23,16 +33,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
     main.addEventListener('click', function() {
         target.innerHTML = '';
     })
+    nav.addEventListener('click', function() {
+        target.innerHTML = '';
+    })
 
 
+    /************************* ARTICLE FORM ****************************/
 
+    newPost.addEventListener('click', function() {
+        articleForm.classList.remove('none');
+        backlay.classList.remove('none');
+    });
+    backlay.addEventListener('click', function() {
+        articleForm.classList.add('none');
+        backlay.classList.add('none');
+    });
+    searchform.addEventListener('click', function() {
+        articleForm.classList.add('none');
+        backlay.classList.add('none');
+    });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const routeParam = urlParams.get('route');
+    /************************* MODIFY PROFILE ****************************/
 
-    if (routeParam === 'game') {
-        console.log('geemmeeee');
-        carCityGame();
-    };
+    let editIcons = document.querySelectorAll(".edit-profile");
+    let activateEdit = document.querySelector(".activate-edit-profile");
+    let desactivateEdit = document.querySelector(".desactivate-edit-profile");
+
+    //Display all modify icons on click
+    activateEdit.addEventListener('click', function() {
+        for (const element of editIcons) {
+            element.classList.remove('none');
+        }
+        activateEdit.classList.add('none');
+        desactivateEdit.classList.remove('none');
+    })
+
+    //hide all modify icons on click
+    desactivateEdit.addEventListener('click', function() {
+        for (const element of editIcons) {
+            element.classList.add('none');
+        }
+        activateEdit.classList.remove('none');
+        desactivateEdit.classList.add('none');
+    })
 
 });

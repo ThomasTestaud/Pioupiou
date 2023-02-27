@@ -1,5 +1,6 @@
 :root {
     --main-background: rgb(225, 228, 234);
+    --theme-main: #007BE0;
 }
 
 * {
@@ -50,6 +51,10 @@ textarea {
     font-size: 1rem;
 }
 
+.none {
+    display: none;
+}
+
 /***************************************************************************************************************************************
 HEADER
 ***********************************************************************************************************************************/
@@ -79,12 +84,31 @@ header form {
     padding: 0rem;
 }
 
-header form input {
+#search-form span {
+    display: flex;
+    align-items: center;
     padding: 0.5em;
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid white;
     border-radius: 3em;
     width: 100%;
+}
+
+#search-form svg {
+    height: 1rem;
+    margin-right: 1rem;
+}
+
+header form input {
+    padding: 0em;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px solid white;
+    width: 100%;
+    color: white;
+}
+
+header form input:focus {
+    outline: 0;
 }
 
 .search-window {
@@ -93,7 +117,7 @@ header form input {
     left: 0;
     right: 0;
     background-color: white;
-    z-index: 2;
+    z-index: 3;
     border-radius: 1rem;
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
@@ -145,6 +169,29 @@ nav svg {
     margin-top: 0.5rem;
 }
 
+#new-post svg {
+    margin-right: 0rem;
+    margin-top: 0rem;
+}
+
+#new-post {
+    position: relative;
+    top: -1rem;
+    background-color: var(--main-background);
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+#new-post:hover {
+    transform: scale(1.1);
+}
 
 /***************************************************************************************************************************************
 WELCOME
@@ -177,7 +224,7 @@ WELCOME
 
 }
 
-.welcome-card .submit input {
+.submit input {
     background-color: #1D7BE0;
     border-radius: 1.5em;
     border: 0px;
@@ -190,7 +237,7 @@ WELCOME
     cursor: pointer;
 }
 
-.welcome-card .submit input:hover {
+.submit input:hover {
     background-color: #1863b2;
 }
 
@@ -222,13 +269,16 @@ DASHBOARD
 article-form
 *************************************************/
 
-.article-form {
+.art-form {
     background-color: white;
     max-width: 50rem;
     min-width: 20rem;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
     margin: 1rem auto;
+    z-index: 3;
+    position: fixed;
+    top: 20%;
 }
 
 .article-form form {
@@ -287,6 +337,16 @@ article-form
 .article-form button:hover {
     background-color: #1863b2;
     cursor: pointer;
+}
+
+.backlay {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /**************************************************
@@ -487,15 +547,22 @@ PROFILE
     position: relative;
 }
 
+.profile-card .modify {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .profile-card .modify svg {
+
     height: 3rem;
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
     padding: 0.5rem;
+    margin-left: 0.5rem;
     border-radius: 50%;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
     opacity: 0.6;
     transition: opacity 0.5s;
     z-index: 1;
@@ -510,12 +577,12 @@ PROFILE
 .profile-card .banner-pic img {
     object-fit: cover;
     width: 100%;
-    height: 20em;
+    height: 13em;
 }
 
 .profile-card .profile-pic {
     position: absolute;
-    top: 15em;
+    top: 8em;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 10em;
@@ -571,6 +638,21 @@ PROFILE
     height: 10em;
 }
 
+
+
+/***************************************************************************************************************************************
+FOOTER
+***********************************************************************************************************************************/
+
+footer {
+    height: 4rem;
+}
+
+
+
+
+
+
 @media screen and (min-width: 600px) {
 
     h1 {
@@ -594,16 +676,28 @@ PROFILE
     }
 
     .search-window {
-        position: absolute;
-        top: 3rem;
-        left: 0;
-        right: 0;
-        background-color: white;
-        z-index: 2;
-        border-radius: 1rem;
-        margin: auto;
-        box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
-        max-height: 70vh;
-        overflow: scroll;
+        top: 4rem;
     }
+
+    #new-post {
+        display: none;
+    }
+
+    .art-form {
+        position: relative;
+        top: 0rem;
+        display: block;
+        z-index: 0;
+    }
+
+    .article-form {
+        position: relative;
+        top: 0rem;
+        display: block;
+    }
+
+    .backlay {
+        display: none;
+    }
+
 }

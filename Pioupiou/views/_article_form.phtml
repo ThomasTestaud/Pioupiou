@@ -1,17 +1,19 @@
-<div class="article-form">
-    <form action="index.php?route=dashboard&action=post" method="post" enctype="multipart/form-data">
-        <?php include_once '__errors.phtml'; ?>
-        <input type="hidden" name="article-title" placeholder="Titre de votre post" value="xxx"/>
-        <textarea type="text"  name="article-content" placeholder="Contenu de votre post"><?= $newArticle['content'] ?? '' ?></textarea>
-        <div class="media-inputs">
-            <button>Choisissez votre fichier MP3
-            <input type="file" name="article-audio">
-            </button>
-            <button>Choisissez votre image
-            <input type="file" name="article-image">
-            </button>
-        </div>
-        
-        <input type="submit" value="Publier"/>
-    </form>
+<div class="article-form none">
+    <!--<div class="backlay"></div>-->
+    <div class="art-form">
+        <form action="index.php?route=dashboard&action=post" method="post" enctype="multipart/form-data">
+            <?php include_once '__errors.phtml'; ?>
+            <input type="hidden" name="article-title" placeholder="Titre de votre post" value="xxx"/>
+            <textarea type="text"  name="article-content" placeholder="Contenu de votre post"><?= $newArticle['content'] ?? '' ?></textarea>
+            <div class="media-inputs">
+                <button>Choisissez votre fichier MP3
+                <input type="file" name="article-audio">
+                </button>
+                <button>Choisissez votre image
+                <input type="file" name="article-image">
+                </button>
+            </div>
+            <input type="submit" value="Publier"/>
+        </form>
+    </div>
 </div>

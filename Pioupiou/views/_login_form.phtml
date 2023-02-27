@@ -11,6 +11,15 @@
     </div>
 </form>
 
+<form action="index.php?route=welcome&action=login-submit" method="post">
+    <?php include_once '__errors.phtml'; ?>
+    <input type="hidden" name="login-id" placeholder="E-mail/Pseudo" value="invité"/>
+    <input type="hidden" name="login-password" placeholder="Mot de passe" value="Coucou?1234"/>
+    <div class="submit">
+        <input type="submit" value="Se connecter en tant qu'Invité"/>
+    </div>
+</form>
+
 <p>ou</p>
 
 <a href="index.php?route=welcome&action=register">Créer un compte</a>

@@ -31,6 +31,9 @@ class ProfileController {
     {
         $model = new \Models\Profile();
         $profile_data = $model->getProfileInfos($user);
+        $utilities = new \Models\Utilities();
+        
+        
         
         $profileInfos = [];
         $articles = [];
@@ -65,7 +68,7 @@ class ProfileController {
                     'article_image' => $data['article_image'],
                     'audio_file' => $data['article_audio'],
                     'validate' => $data['article_validate'],
-                    'time_stamp' => $data['article_time_stamp']
+                    'time_stamp' => $utilities->calculateDate($data['article_time_stamp'])
                 ];
             }
             
@@ -76,7 +79,7 @@ class ProfileController {
                 'content' => $data['comment_content'],
                 'username' => $data['comment_author'],
                 'image_path' => $data['comment_author_photo'],
-                'time_stamp' => $data['comment_time_stamp']
+                'time_stamp' => $utilities->calculateDate($data['comment_time_stamp'])
             ];
         }
         
@@ -149,6 +152,9 @@ class ProfileController {
             $model = new \Models\Profile();
             $model->updateBanner($fileName);
         }
+        
+        
+        
         header('Location: index.php?route=profile');
         exit;
     }
@@ -197,18 +203,39 @@ class ProfileController {
     
     public function editBanner()
     {
+        //if table row 'user_profile' does not exist for that user, create one
+        $model = new \Models\Profile();
+        $exist = $model->checkIfUserProfileExist($_SESSION['user_data']['user_id']);
+        if(!$exist) {
+            $model->createUserProfile($_SESSION['user_data']['user_id']);
+        };
+            
         $template = "edit_banner.phtml";
         include_once 'views/layout.phtml';
     }
     
     public function editProfilePicture()
     {
+        //if table row 'user_profile' does not exist for that user, create one
+        $model = new \Models\Profile();
+        $exist = $model->checkIfUserProfileExist($_SESSION['user_data']['user_id']);
+        if(!$exist) {
+            $model->createUserProfile($_SESSION['user_data']['user_id']);
+        };
+            
         $template = "edit_profile_photo.phtml";
         include_once 'views/layout.phtml';
     }
     
     public function editDescription()
     {
+        //if table row 'user_profile' does not exist for that user, create one
+        $model = new \Models\Profile();
+        $exist = $model->checkIfUserProfileExist($_SESSION['user_data']['user_id']);
+        if(!$exist) {
+            $model->createUserProfile($_SESSION['user_data']['user_id']);
+        };
+            
         $template = "edit_description.phtml";
         include_once 'views/layout.phtml';
     }

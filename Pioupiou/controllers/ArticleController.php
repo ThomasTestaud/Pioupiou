@@ -131,6 +131,7 @@ class ArticleController {
     
     private function sortArticles($articles_data)
     {
+        $utilities = new \Models\Utilities();
         if(empty($articles_data)){
             header('Location: index.php?route=404');
             exit;
@@ -158,7 +159,7 @@ class ArticleController {
                     'content' => $data['content'],
                     'article_image' => $data['article_image'],
                     'audio_file' => $data['audio_file'],
-                    'time_stamp' => $data['time_stamp']
+                    'time_stamp' => $utilities->calculateDate($data['time_stamp'])
                 ];
             }
             
@@ -169,19 +170,26 @@ class ArticleController {
                 'content' => $data['comment_content'],
                 'username' => $data['comment_username'],
                 'image_path' => $data['comment_image'],
-                'time_stamp' => $data['comment_time_stamp']
+                'time_stamp' => $utilities->calculateDate($data['comment_time_stamp'])
             ];
         }
         
         //create tokens for each article and each comment
+        //calculate date for each article and comment
         $_SESSION['article-tokens'] = [];
+        
         foreach($articles as $article) {
             $_SESSION['article-tokens'][] = [
                 'id' => $article['id'],
                 'token' => bin2hex(random_bytes(5))
             ];
+            //$article['time_stamp'] = $this->calculateDate($article['time_stamp']);
+            // var_dump($article['time_stamp']);
+            // die();
         }
+        
         $_SESSION['comment-tokens'] = [];
+        
         foreach($comments as $comment) {
             $_SESSION['comment-tokens'][] = [
                 'id' => $comment['id'],

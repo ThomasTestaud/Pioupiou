@@ -38,16 +38,13 @@ class Profile extends Database {
         return $this->findOne($req, $params);
     }
     
-    public function createUserProfile($data)
+    public function createUserProfile($userId)
     {
-        $req = "INSERT INTO `user_profile`(`user_id`, `description`, `image_path`, `banner_image`) 
-                                    VALUES (:userId, :description, :profileImage,:bannerImage)";
+        $req = "INSERT INTO `user_profile`(`user_id`) 
+                                    VALUES (:userId)";
                                     
         $params = [
-            'userId' => $data['userId'],
-            'description' => $data['description'],
-            'profileImage' => $data['banner_image'],
-            'bannerImage' => $data['profile_image']
+            'userId' => $userId
         ];
         
         $this->createNew($req, $params);
