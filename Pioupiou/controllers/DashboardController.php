@@ -11,7 +11,7 @@ class DashboardController {
         $model->isConnected();
         
         $articles = $articles_data[0];
-        $comments = $articles_data[1];
+        $comments = $articles_data[2];
         
         $template = "dashboard.phtml";
         include_once 'views/layout.phtml';

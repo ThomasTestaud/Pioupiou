@@ -21,7 +21,7 @@ class ProfileController {
         
         
         $articles = $profile_data[1];
-        $comments = $profile_data[2];
+        $comments = $profile_data[3];
         
         $template = "profil.phtml";
         include_once 'views/layout.phtml';
@@ -83,6 +83,39 @@ class ProfileController {
             ];
         }
         
+        //Create a 'filtered comments array' to only display a certain amount of comments under each post
+        $lastId = 0;
+        $count = 0;
+        //Maximun number of comments displayed under each post
+        $commentsAmount = 2;
+        //Reverse the array to keep only the most recent comments
+        $reverseComments = array_reverse($comments);
+        
+        foreach($reverseComments as $comment){
+            //var_dump($comment);
+            if($comment['article_id'] !== $lastId){
+                $count = 0;
+            }
+            if($comment['validate'] !== 0 && $comment['article_id'] !== null){
+                if($count < $commentsAmount){
+                    if($comment['article_id'] === $lastId) {
+                        $count++;
+                        //echo'count<br>';
+                        //echo $count;
+                    }
+                    //echo 'push<br>';
+                    $filteredComment[] = $comment;
+                    
+                }
+            }
+            $lastId = $comment['article_id'];
+        }
+        
+        
+        //Reverse the array again to put back the comments in the chronologicle order
+        $filteredComment = array_reverse($filteredComment);
+        
+        
         //create tokens for each article and each comment
         $_SESSION['article-tokens'] = [];
         foreach($articles as $article) {
@@ -102,7 +135,8 @@ class ProfileController {
         $profile_data = [
             $profileInfos,
             $articles,
-            $comments
+            $comments,
+            $filteredComment
         ];
         
         return $profile_data;
