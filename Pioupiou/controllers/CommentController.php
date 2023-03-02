@@ -84,5 +84,47 @@ class CommentController {
         header('Location: index.php?route=dashboard');
         exit;
     }
+    
+    public function getCommentsofArticle()
+    {
+        $content = file_get_contents("php://input");
+        $data = json_decode($content, true);
+        
+        $id = $data['id'];
+        
+        $model = new \Models\Comments();
+        $results = $model->getCommentsFromArticle($id);
+        $utilities = new \Models\Utilities();
+        
+        $comments = [];
+        
+        foreach($results as $result){
+            
+            
+            $article['id'] = $result['article_id'];
+            $article['username'] = $result['article_username'];
+            
+            $comments[] = [
+                'id' => $result['id'],
+                'username' => $result['username'],
+                'content' => $result['content'],
+                'time_stamp' => $utilities->calculateDate($result['time_stamp']),
+                'image_path' => $result['image_path'],
+                'article_id' => $result['article_id'],
+                'validate' => $result['validate']
+            ];
+        }
+        
+        foreach($comments as $comment) {
+            $_SESSION['comment-tokens'][] = [
+                'id' => $comment['id'],
+                'token' => bin2hex(random_bytes(10))
+            ];
+        }
+        
+        $allComments = true;
+        
+        require 'views/_comments.phtml';
+    }
 
 }

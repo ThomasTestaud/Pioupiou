@@ -3,13 +3,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let newPost = document.querySelector('#new-post');
     let articleForm = document.querySelector('.article-form');
     let backlay = document.querySelector('.backlay');
-    let searchform = document.querySelector('#search-form');
-    let searchBar = document.querySelector('#search');
     let target = document.getElementById("target");
     let main = document.querySelector('main');
     let nav = document.querySelector('nav');
 
-    /************************* SEARCH BAR ****************************/
+    /************************* SEARCH BAR AJAX ****************************/
+    let searchform = document.querySelector('#search-form');
+    let searchBar = document.querySelector('#search');
 
 
     //display the seach in the search window
@@ -36,6 +36,42 @@ window.addEventListener('DOMContentLoaded', (event) => {
     nav.addEventListener('click', function() {
         target.innerHTML = '';
     })
+
+
+    /************************* COMMENTS AJAX ****************************/
+
+    let displayComment = document.querySelectorAll('.display-comment');
+
+    for (let i = 0; i < displayComment.length; i++) {
+        displayComment[i].addEventListener('click', displayAllComments)
+    }
+
+    function displayAllComments(e) {
+
+        //get the id of the article
+        let articleId = (e.target.id).replace("button-", "");
+
+        //target the right element in the html by add the article id
+        let divComment = document.querySelector('#comment-target-' + (e.target.id).replace("button-", ""));
+
+        //get all the comments from that article the AJAX
+        let fetchcomments = new Request('index.php?route=getcomments', {
+            method: 'POST',
+            body: JSON.stringify({ id: articleId })
+        })
+
+        fetch(fetchcomments)
+            .then(res => res.text())
+            .then(res => {
+                divComment.innerHTML = res;
+
+
+            })
+        //scroll the the bottom of the element
+        divComment.scrollTop += 1000;
+    }
+
+
 
 
     /************************* ARTICLE FORM ****************************/

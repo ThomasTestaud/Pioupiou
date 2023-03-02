@@ -105,6 +105,11 @@ if(array_key_exists('route', $_GET)) {
                 $controller->displaySearch();
             break;
             
+            case 'getcomments':
+                $controller = new Controllers\CommentController();
+                $controller->getCommentsofArticle();
+            break;
+            
             case 'game':
                 $controller = new Controllers\GameController();
                 $controller->displayCarCity();

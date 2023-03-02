@@ -396,6 +396,7 @@ article
 
 .post .post-head img {
     height: 3em;
+    width: 3em;
     border-radius: 50%;
     margin-right: 0.7em;
 }
@@ -421,7 +422,7 @@ article
 }
 
 .post .post-text {
-    margin: 0.7em;
+    margin: 0 0.7em;
 }
 
 /***************MEDIA***************/
@@ -462,8 +463,10 @@ article
 
 .post .post-comments {
     border-top: 1px solid var(--main-background);
-    max-height: 25rem;
+    max-height: 40rem;
     overflow: scroll;
+    transition: height 0.5s;
+    position: relative;
 }
 
 .post .post-comments::-webkit-scrollbar {
@@ -477,6 +480,7 @@ article
 
 .post .comment-container img {
     height: 2em;
+    width: 2em;
     border-radius: 50%;
 }
 
@@ -532,6 +536,36 @@ article
     padding: 1.5em;
 
 }
+
+
+/**********DISPLAY COMMENT ***********/
+
+.display-comment {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    right: 0rem;
+    height: 6rem;
+    background: rgb(150, 150, 150);
+    background: linear-gradient(0deg, rgba(150, 150, 150, 0) 0%, white 56%);
+}
+
+.display-comment p {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.display-comment p:hover {
+    text-decoration: underline;
+}
+
+
 
 /***************************************************************************************************************************************
 PROFILE

@@ -34,7 +34,7 @@ class ArticleController {
         $articles_data = $this->sortArticles($articles_data);
         $articles = $articles_data[0];
         $comments = $articles_data[1];
-        
+        $allComments = true;
         //display view
         $template = "article.phtml";
         include_once 'views/layout.phtml';

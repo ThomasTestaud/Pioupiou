@@ -86,11 +86,11 @@ class ProfileController {
         //Create a 'filtered comments array' to only display a certain amount of comments under each post
         $lastId = 0;
         $count = 0;
+        $filteredComment = [];
         //Maximun number of comments displayed under each post
         $commentsAmount = 2;
         //Reverse the array to keep only the most recent comments
         $reverseComments = array_reverse($comments);
-        
         foreach($reverseComments as $comment){
             //var_dump($comment);
             if($comment['article_id'] !== $lastId){
