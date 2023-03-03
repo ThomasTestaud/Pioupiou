@@ -38,6 +38,16 @@
             <?php endif; ?>
         </header>
         <main>
+            <?php if(!empty($_SESSION['flying-notifications'])): ?>
+            <div class="flying-notifications-container">
+                <?php foreach($_SESSION['flying-notifications'] as $notif):?>
+                    <div class="flying-notifications">
+                        <p><?= $notif ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php $_SESSION['flying-notifications'] = [] ?>
+            <?php endif; ?>
             <div class="backlay none"></div>
             <?php include $template ?>
         </main>

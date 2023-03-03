@@ -84,4 +84,16 @@ class Articles extends Database {
         
         $this->createNew($req, $params);
     }
+    
+    public function desactivateArticle($articleId)
+    {
+        $req = "DELETE FROM `comments` WHERE `article_id` = :id;
+                DELETE FROM `articles` WHERE `id` = :id;";
+        
+        $params = [
+            'id' => $articleId    
+        ];
+        
+        $this->createNew($req, $params);
+    }
 }

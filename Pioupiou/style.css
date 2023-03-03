@@ -193,6 +193,32 @@ nav svg {
     transform: scale(1.1);
 }
 
+
+/***************************************************************************************************************************************
+NOTIFICATIONS
+***********************************************************************************************************************************/
+
+.flying-notifications-container {
+    z-index: 1;
+    position: fixed;
+    bottom: 5rem;
+    right: 1rem;
+}
+
+.flying-notifications-container .flying-notifications {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 2px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.flying-notifications-container .flying-notifications:hover {
+    background-color: var(--main-background);
+}
+
 /***************************************************************************************************************************************
 WELCOME
 ***********************************************************************************************************************************/

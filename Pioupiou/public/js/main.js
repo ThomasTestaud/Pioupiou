@@ -89,8 +89,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
         backlay.classList.add('none');
     });
 
-    /************************* MODIFY PROFILE ****************************/
+    /************************* FLYING NOTIFICATIONS ****************************/
 
+    let flyingNots = document.querySelectorAll('.flying-notifications');
+
+    for (let i = 0; i < flyingNots.length; i++) {
+        flyingNots[i].addEventListener('click', function() {
+            flyingNots[i].classList.add('none');
+        });
+
+    }
+
+    /************************* MODIFY PROFILE ****************************/
     let editIcons = document.querySelectorAll(".edit-profile");
     let activateEdit = document.querySelector(".activate-edit-profile");
     let desactivateEdit = document.querySelector(".desactivate-edit-profile");
@@ -102,7 +112,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         activateEdit.classList.add('none');
         desactivateEdit.classList.remove('none');
-    })
+    });
 
     //hide all modify icons on click
     desactivateEdit.addEventListener('click', function() {
@@ -112,5 +122,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         activateEdit.classList.remove('none');
         desactivateEdit.classList.add('none');
     })
+
+
+
 
 });

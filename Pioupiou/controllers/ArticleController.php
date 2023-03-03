@@ -85,7 +85,9 @@ class ArticleController {
             $model = new \Models\Articles();
             $model->writeArticle($newArticle);
             
-            $_SESSION['notif'] = 'Votre post a bien été ajouté';
+            $_SESSION['flying-notifications'][] = 'Votre post a bien été ajouté';
+            
+            
             
             header('Location: index.php?route=dashboard');
             exit;
@@ -123,6 +125,8 @@ class ArticleController {
         if(count($errors) === 0) {
             $model = new \Models\Articles();
             $model->deleteArticle($_POST['article-id']);
+            
+            $_SESSION['flying-notifications'][] = 'Votre post a bien été supprimé';
         }
         
         header('Location: index.php?route=dashboard');

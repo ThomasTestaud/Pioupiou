@@ -50,6 +50,8 @@ class CommentController {
             $model = new \Models\Comments();
             $model->writeComment($newComment);
             
+            $_SESSION['flying-notifications'][] = 'Votre commentaire a bien été envoyé';
+            
         }
             header('Location: index.php?route=article&id='.$_POST['article-id']);
             exit;
@@ -79,6 +81,8 @@ class CommentController {
         if(count($errors) === 0) {
             $model = new \Models\Comments();
             $model->deleteComment($_POST['comment-id']);
+            
+            $_SESSION['flying-notifications'][] = 'Votre commentaire a bien été supprimé';
         }
         
         header('Location: index.php?route=dashboard');

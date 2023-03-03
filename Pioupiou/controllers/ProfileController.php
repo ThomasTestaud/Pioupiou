@@ -185,6 +185,8 @@ class ProfileController {
             
             $model = new \Models\Profile();
             $model->updateBanner($fileName);
+            
+            $_SESSION['flying-notifications'][] = 'Votre profil à bien été modifié';
         }
         
         
@@ -203,6 +205,8 @@ class ProfileController {
             
             $model = new \Models\Profile();
             $model->updateProfilePicture($fileName);
+            
+            $_SESSION['flying-notifications'][] = 'Votre profil à bien été modifié';
         }
         header('Location: index.php?route=profile');
         exit;
@@ -224,6 +228,7 @@ class ProfileController {
         if(count($errors) === 0) {
             $model = new \Models\Profile();
             $model->updateDescription($_POST['description']);
+            $_SESSION['flying-notifications'][] = 'Votre profil à bien été modifié';
             header('Location: index.php?route=profile');
             exit;
         }else{
